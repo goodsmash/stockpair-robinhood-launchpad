@@ -491,3 +491,16 @@ body:after { content:''; position:fixed; inset:0; z-index:-1; pointer-events:non
 .radar-card h3 small{display:block;font-size:.65rem;opacity:.5;font-weight:400;margin-top:2px}
 .radar-card .radar-header div{flex:1}
 
+
+.radar-tabs{display:flex;gap:.3rem;flex-shrink:0}
+.tab-btn{padding:4px 10px;border-radius:4px;font-size:.7rem;border:1px solid rgba(74,225,255,.2);background:transparent;color:#8cf;cursor:pointer;transition:all .15s}
+.tab-btn.active{background:rgba(74,225,255,.15);border-color:rgba(74,225,255,.5);color:#fff}
+.tab-btn:hover:not(.active){border-color:rgba(74,225,255,.4)}
+.mainnet-card{border-left:3px solid #f44}
+.radar-stats{display:flex;gap:.3rem;align-items:center;flex-shrink:0}
+.tx-badge{padding:2px 6px;border-radius:3px;font-size:.65rem;background:rgba(74,225,255,.1);color:#8cf}
+.score-val{position:absolute;right:2px;top:-2px;font-size:.55rem;opacity:.6}
+.score-bar{position:relative}
+.callout.highlight{background:rgba(255,68,68,.08);border:1px solid rgba(255,68,68,.25);padding:.7rem 1rem;border-radius:8px;margin-bottom:1rem;font-size:.8rem}
+.callout.muted{opacity:.5;font-size:.8rem;padding:.7rem 0}
+
