@@ -295,7 +295,7 @@ let scoutFilter = 'all'
 let scoutQuery = ''
 let radarCandidates: RadarCandidate[] = []
 type RadarScores = { safety: number; liquidity: number; traction: number; freshness: number; provenance: number }
-type RadarCandidate = { id: string; chainId: number; address: string; deploymentBlock: string; deployer: string; transactionHash: string; codeHash: string; scores: RadarScores; riskScore: number; status: string; verifiedPools: number; swaps: number; executionReview: { blockers: string[]; requiredSteps: string[] } }
+type RadarCandidate = { id: string; chainId: number; address: string; deploymentBlock: string; deployer: string; transactionHash: string; codeHash: string; scores: RadarScores; riskScore: number; status: string; verifiedPools: number; swaps: number; tokenSymbol?: string | null; tokenName?: string | null; chain?: string; explorerUrl?: string | null; executionReview: { blockers: string[]; requiredSteps: string[] } }
 let eventSource: EventSource | undefined
 const watchlist = new Set<string>(safeStoredArray('stockpair-watchlist'))
 let searchQuery = ''
@@ -752,37 +752,59 @@ function scoutRiskBadge(risk?: ScoutRisk): string { return risk ? badge(risk.sta
 function timeAgo(seconds?: number | null): string { if (!seconds) return 'time unavailable'; const delta = Math.max(0, nowSeconds() - seconds); if (delta < 60) return `${delta}s ago`; if (delta < 3600) return `${Math.floor(delta/60)}m ago`; if (delta < 86400) return `${Math.floor(delta/3600)}h ago`; return `${Math.floor(delta/86400)}d ago` }
 async function fetchRadar(): Promise<void> {
   try {
-    const res = await fetch(`${indexerUrl}/api/radar/candidates?limit=50`, { headers: { accept: 'application/json' } })
-    if (!res.ok) return
-    const data = await res.json()
-    if (Array.isArray(data?.candidates)) radarCandidates = data.candidates
+    const [r1, r2] = await Promise.allSettled([
+      fetch(`${indexerUrl}/api/radar/candidates?limit=30`, { headers: { accept: 'application/json' } }),
+      fetch(`${indexerUrl}/api/scout/contracts?limit=30`, { headers: { accept: 'application/json' } })
+    ])
+    const radar = r1.status === 'fulfilled' && r1.value.ok ? await r1.value.json() : null
+    const scout = r2.status === 'fulfilled' && r2.value.ok ? await r2.value.json() : null
+    if (radar?.candidates) radarCandidates = radar.candidates
+    // Merge scout data for richer display
+    if (Array.isArray(scout)) {
+      const scoutMap = new Map(scout.map((c: any) => [c.address?.toLowerCase(), c]))
+      radarCandidates = radarCandidates.map(c => {
+        const sc = scoutMap.get(c.address?.toLowerCase())
+        return sc ? { ...c, tokenSymbol: sc.token?.symbol || null, tokenName: sc.token?.name || null, chainId: sc.chainId || c.chainId, chain: sc.chain || 'Unknown', explorerUrl: sc.explorerUrl } : c
+      })
+    }
   } catch { /* indexer may be unavailable */ }
 }
 
 function renderRadar(): string {
   const rows = radarCandidates
-  const scoringBar = (v: number) => `<span class="score-bar" style="width:${Math.max(0,Math.min(100,v))}%"></span>`
+  const scoringBar = (v: number, color = '#4adfff') => `<span class="score-bar" style="width:${Math.max(0,Math.min(100,v))}%;background:linear-gradient(90deg,${color},#ffe06a)"></span>`
+  const chainLabel = (id: number) => id === 4663 ? '🔴 MAINNET' : id === 46630 ? '🟡 TESTNET' : `Chain ${id}`
   return `<section class="section-block">
-    <div class="section-heading"><div><h2>◈ Launch Radar</h2><p>Live Robinhood Chain testnet. Scores never authorize execution — every candidate requires review.</p></div></div>
+    <div class="section-heading"><div><h2>◈ Launch Radar</h2><p>Live cross-chain detection. Scores never authorize execution. Found ${rows.length} candidates across Robinhood Chain.</p></div></div>
     <div class="scout-grid">${rows.length ? rows.map(c => {
       const s = c.scores || { safety:50, liquidity:0, traction:0, freshness:50, provenance:30 }
+      const symbol = c.tokenSymbol || c.address?.slice(0,10) || c.id
+      const chainBadge = c.chainId === 4663 ? '<span class="chain-badge mainnet">MAINNET</span>' : '<span class="chain-badge testnet">TESTNET</span>'
       return `<article class="card-surface radar-card">
-        <div class="radar-header"><h3>${escapeHtml(c.address?.slice(0,14) || c.id)}</h3><span class="risk-badge ${c.riskScore <= 20 ? 'low' : c.riskScore <= 40 ? 'caution' : 'danger'}">risk ${c.riskScore}/100</span></div>
+        <div class="radar-header">
+          <div><h3>${escapeHtml(symbol)} ${chainBadge}</h3><small>${escapeHtml(c.address?.slice(0,16) || '')}...</small></div>
+          <span class="risk-badge ${c.riskScore <= 20 ? 'low' : c.riskScore <= 40 ? 'caution' : 'danger'}">risk ${c.riskScore}/100</span>
+        </div>
         <div class="score-grid">
-          <div><label>Safety ${Math.round(s.safety)}</label>${scoringBar(s.safety)}</div>
-          <div><label>Provenance ${Math.round(s.provenance)}</label>${scoringBar(s.provenance)}</div>
-          <div><label>Freshness ${Math.round(s.freshness)}</label>${scoringBar(s.freshness)}</div>
-          <div><label>Traction ${Math.round(s.traction)}</label>${scoringBar(s.traction)}</div>
+          <div><label>Safety ${Math.round(s.safety)}</label>${scoringBar(s.safety, '#0a3')}</div>
+          <div><label>Provenance ${Math.round(s.provenance)}</label>${scoringBar(s.provenance, '#4af')}</div>
+          <div><label>Freshness ${Math.round(s.freshness)}</label>${scoringBar(s.freshness, '#f90')}</div>
+          <div><label>Traction ${Math.round(s.traction)}</label>${scoringBar(s.traction, '#f0f')}</div>
         </div>
         <div class="radar-meta">
           <span>Block #${Number(c.deploymentBlock).toLocaleString()}</span>
           <span>Deployer ${escapeHtml(c.deployer?.slice(0,12) || '?')}...</span>
           <span>${escapeHtml(c.status || 'unverified')}</span>
+          <span>${chainLabel(c.chainId || 46630)}</span>
+        </div>
+        <div class="radar-actions">
+          <a href="${escapeAttr(c.explorerUrl || 'https://explorer.testnet.chain.robinhood.com')}/address/${c.address}" target="_blank" rel="noopener" class="btn-sm">🔍 Explorer</a>
+          <button class="btn-sm primary radar-buy-btn" data-address="${escapeAttr(c.address)}" data-symbol="${escapeAttr(symbol)}">💰 Trade Token</button>
         </div>
         ${c.executionReview?.blockers?.length ? `<div class="callout danger">⛔ ${c.executionReview.blockers.map(escapeHtml).join('; ')}</div>` : ''}
       </article>`
-    }).join('') : emptyState('No candidates yet', 'The Launch Radar refreshes as the Chain Scout discovers new contracts. Ensure the indexer is connected to a live RPC endpoint.')}</div>
-    <div class="callout info">◈ Powered by StockPair Launch Intelligence v0.7.0. ${rows.length} candidates indexed.</div>
+    }).join('') : emptyState('Scanning chains for new tokens...', 'The Launch Radar monitors both Robinhood mainnet and testnet. New deployments appear here within seconds. Connect your wallet to trade.')}</div>
+    <div class="callout info">◈ StockPair v0.7.0 · ${rows.length} candidates · Polling every 8s · Mainnet + Testnet · <button class="btn-sm" id="radar-refresh">↻ Refresh Now</button></div>
   </section>`
 }
 
@@ -1052,6 +1074,16 @@ function bindViewEvents() {
   document.querySelectorAll<HTMLElement>('[data-scan-token]').forEach((button) => button.addEventListener('click', () => { void scanToken(button.dataset.scanToken!); setView('scanner') }))
   document.querySelector('#activity-refresh')?.addEventListener('click', () => void refreshData(true))
   document.querySelector('#scout-refresh')?.addEventListener('click', () => void refreshData(true))
+  document.querySelector('#radar-refresh')?.addEventListener('click', () => void refreshData(true))
+  document.querySelectorAll('.radar-buy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const addr = (btn as HTMLElement).dataset.address
+      if (!addr) return
+      if (!account) { toast('Connect your wallet first', 'error'); return }
+      searchQuery = addr
+      setView('trade')
+    })
+  })
   const scoutSelect = document.querySelector<HTMLSelectElement>('#scout-filter'); if (scoutSelect) { scoutSelect.value = scoutFilter; scoutSelect.addEventListener('change', () => { scoutFilter = scoutSelect.value; renderView() }) }
   document.querySelector<HTMLInputElement>('#scout-search')?.addEventListener('input', debounce((event: Event) => { scoutQuery = (event.currentTarget as HTMLInputElement).value; renderView() }, 180))
   document.querySelectorAll<HTMLElement>('[data-watch]').forEach((button) => button.addEventListener('click', () => toggleWatch(button.dataset.watch!)))

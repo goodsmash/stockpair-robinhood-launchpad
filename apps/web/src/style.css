@@ -479,3 +479,15 @@ body:after { content:''; position:fixed; inset:0; z-index:-1; pointer-events:non
 .radar-card .risk-badge.danger{background:#c22;color:#fff}
 .radar-card{border:1px solid rgba(74,225,255,.15)}
 .radar-card:hover{border-color:rgba(74,225,255,.4)}
+
+.radar-actions{display:flex;gap:.5rem;margin-top:.5rem}
+.radar-actions .btn-sm{padding:4px 12px;border-radius:6px;font-size:.75rem;border:1px solid rgba(74,225,255,.3);background:rgba(74,225,255,.08);color:#e8faff;cursor:pointer;text-decoration:none;transition:all .15s}
+.radar-actions .btn-sm:hover{background:rgba(74,225,255,.18);border-color:rgba(74,225,255,.6)}
+.radar-actions .btn-sm.primary{background:rgba(255,214,84,.12);border-color:rgba(255,214,84,.5);color:#ffe06a}
+.radar-actions .btn-sm.primary:hover{background:rgba(255,214,84,.25)}
+.chain-badge{display:inline-block;padding:1px 6px;border-radius:3px;font-size:.6rem;font-weight:700;margin-left:4px;vertical-align:middle}
+.chain-badge.mainnet{background:#c22;color:#fff}
+.chain-badge.testnet{background:#c80;color:#fff}
+.radar-card h3 small{display:block;font-size:.65rem;opacity:.5;font-weight:400;margin-top:2px}
+.radar-card .radar-header div{flex:1}
+
