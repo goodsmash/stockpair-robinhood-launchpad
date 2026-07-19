@@ -1,0 +1,297 @@
+{
+  "release": "StockPair v0.7.0 agent integration pack",
+  "generatedAt": "2026-07-19T19:01:26.230524+00:00",
+  "files": 58,
+  "inventory": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 4842,
+      "sha256": "1c73f696eaa594fa9a3738b57e4cea496752fcd4c4e2a7294187e1487dd89302"
+    },
+    {
+      "path": "COMPLETE_V0.7_INTELLIGENCE_HANDOFF.md",
+      "bytes": 7218,
+      "sha256": "24362d97b4514ff14c700c0ac24edb3d55e0e4a2a31f4836b44ef8f8ecd04e12"
+    },
+    {
+      "path": "README.md",
+      "bytes": 9298,
+      "sha256": "bcc492e1e913b7e5f8cd36f1176f372e79d21590b3bc667bb6107db764158246"
+    },
+    {
+      "path": "SECURITY.md",
+      "bytes": 3426,
+      "sha256": "004c489f731deeadc51e4575731bbba042c9eae8f36f304d511a48c156d813a6"
+    },
+    {
+      "path": "config/alert-rules.example.json",
+      "bytes": 611,
+      "sha256": "0938c0fb503db1882bf95103243c2c715ef73b060bf1dee459468736dbea2687"
+    },
+    {
+      "path": "config/execution-policy.example.json",
+      "bytes": 321,
+      "sha256": "f227c2d85bc01b75ee57fe05040be13d80bcf1f42a0fb72ac6fe320f1e6d08ee"
+    },
+    {
+      "path": "config/launch-sources.example.json",
+      "bytes": 789,
+      "sha256": "b846e1571bc3e4c73ac8e062da042c66582e31304311551e2f70027765b02633"
+    },
+    {
+      "path": "docs/AGENT_HANDOFF.md",
+      "bytes": 7064,
+      "sha256": "e7d878ccd26876ed243abdfba611c6a3220f59edcd434804fa654e8c74a74ddd"
+    },
+    {
+      "path": "docs/AGENT_INTEGRATION_COOKBOOK.md",
+      "bytes": 1843,
+      "sha256": "e83c51e54bbb5ed437aaaff6ca94197429d9aaf655ce59a785f26f451325f2f9"
+    },
+    {
+      "path": "docs/AGENT_START_HERE_v0.7.md",
+      "bytes": 2183,
+      "sha256": "00f6cb8e4f07eb84c9beca982ddfaf0cc21ea88df2c57c31fd7d3462ff334970"
+    },
+    {
+      "path": "docs/CHAIN_SIGNAL_CATALOG.md",
+      "bytes": 2433,
+      "sha256": "2898a8beccbadd97feac4e9b26afebf23baffd187b2b1bee15d814c3639d2aad"
+    },
+    {
+      "path": "docs/COMPETITIVE_LAUNCHPAD_REVIEW_2026.md",
+      "bytes": 8546,
+      "sha256": "c27a74a28d7a62449887e4e15ebde668fb70a6b85c35cb27290dd56f94b24e36"
+    },
+    {
+      "path": "docs/LAUNCH_SOURCE_ADAPTER_GUIDE.md",
+      "bytes": 2144,
+      "sha256": "ec5f00222e19d5fd0946ba2a3912bf1e60e441115f4f8235f290b3978b743299"
+    },
+    {
+      "path": "docs/PERSISTENCE_REORG_AND_FINALITY.md",
+      "bytes": 1727,
+      "sha256": "02758a3d275347e59a8d3598f987b473cfa0ea4d5e67538e531706942a573e34"
+    },
+    {
+      "path": "docs/RELEASE_NOTES_v0.7.0.md",
+      "bytes": 2242,
+      "sha256": "bff5400b79c195ac61167a2b96b594231fada545dd3179a4a0b5130a7ae94cea"
+    },
+    {
+      "path": "docs/SAFE_EARLY_LAUNCH_TOOLKIT.md",
+      "bytes": 1780,
+      "sha256": "1e89bb65669c45b76db3702e97b555d317cb5de4bbedef244f60ae1cbf47a8a8"
+    },
+    {
+      "path": "docs/SAFE_LAUNCH_RADAR_AND_EXECUTION.md",
+      "bytes": 2688,
+      "sha256": "3f1e57ea6a4b129fe86755b4bb3013e826ce0b198bdddab987fb0e96f4b26d01"
+    },
+    {
+      "path": "docs/SEQUENCER_FEED_AND_LOW_LATENCY.md",
+      "bytes": 1539,
+      "sha256": "f46de114c9451d282ee568ea28bf09c08c6f7b3f3e4d26ac929b28d32861bf9c"
+    },
+    {
+      "path": "docs/THREAT_MODEL.md",
+      "bytes": 4982,
+      "sha256": "da4d19f8c13443b047b89594964a5bc6fc212a17ad0f222c549e6a7a4e146922"
+    },
+    {
+      "path": "docs/UI_SECURITY_MODEL.md",
+      "bytes": 2697,
+      "sha256": "879a579a45ae4a2895757f0de16160d47be0a4e545ddec5c757c284afc8eeb17"
+    },
+    {
+      "path": "docs/V0.7_AGENT_IMPLEMENTATION_BACKLOG.md",
+      "bytes": 2339,
+      "sha256": "f4c651c411f0b33b21bc654e53bed82667d04cc5a7249fa2f3cbd243aae2c316"
+    },
+    {
+      "path": "indexer-code/launch-intelligence.mjs",
+      "bytes": 14202,
+      "sha256": "cec09e1ccaaba5b04d90a6bda32c3558cd7a33443130c51201fda7ae66005505"
+    },
+    {
+      "path": "indexer-code/radar.mjs",
+      "bytes": 1405,
+      "sha256": "354a5e310da11bc5eb74a343cf1f72c29ed7b07c5484b6776aa6b4d881534f05"
+    },
+    {
+      "path": "indexer-code/source-adapters.mjs",
+      "bytes": 2636,
+      "sha256": "ebf5bebd6ec829455b80043cd40722ff42cb2de44df86ff64b0ecce1c76559fa"
+    },
+    {
+      "path": "integrations/README.md",
+      "bytes": 1041,
+      "sha256": "affacda8224870926f168e6f527c69609f692c01ef644c6ba0b6481618bffe44"
+    },
+    {
+      "path": "integrations/agent-tasks.json",
+      "bytes": 1847,
+      "sha256": "e3c00291941ec8c590f7b9343c380b5f251fe276b3596db332bfba28d762d167"
+    },
+    {
+      "path": "integrations/examples/agent-radar.mjs",
+      "bytes": 625,
+      "sha256": "6ae58cde6768885b35e73170e1a2170ded86e3945a4a120de1076a85594b015a"
+    },
+    {
+      "path": "integrations/examples/unsigned-execution-plan.example.json",
+      "bytes": 1267,
+      "sha256": "8cd440b03834a717c4ae5a2890e1a4240e0323be4006cf8380dea87d4c901c40"
+    },
+    {
+      "path": "integrations/openapi.json",
+      "bytes": 4458,
+      "sha256": "4b3a57baea1c31a51f405a0f65d72773387b797bb812028b83a00f5034c785a4"
+    },
+    {
+      "path": "integrations/schemas/alert-rule.schema.json",
+      "bytes": 1288,
+      "sha256": "f960f56ee2196be0f709df0f0f28b2d8d02e2f6f37a8f0f9b823531e9aa65546"
+    },
+    {
+      "path": "integrations/schemas/execution-policy.schema.json",
+      "bytes": 1173,
+      "sha256": "be2b89d8f93718fb739cad90be52b70b6bdb270b6611df1c25efbadd4eaea252"
+    },
+    {
+      "path": "integrations/schemas/launch-source.schema.json",
+      "bytes": 962,
+      "sha256": "0a42e6bc15e8e109579b474192af95ac70072404c3c363a0e90196da110cc490"
+    },
+    {
+      "path": "integrations/schemas/unsigned-execution-plan.schema.json",
+      "bytes": 2763,
+      "sha256": "094cf89db003e1388b474418d0d66ee814e713cb29793b66e5884f64f67cc32e"
+    },
+    {
+      "path": "integrations/templates/source-adapter.template.mjs",
+      "bytes": 1930,
+      "sha256": "ae8ca97a9468d798ba131d0affc6af626a4aac3b29fa2d1edc18d4374e75316b"
+    },
+    {
+      "path": "packages/launch-intelligence-sdk/README.md",
+      "bytes": 1121,
+      "sha256": "368c501fb01662d5b70285a1fe9e723275de5496d964f329b93cc989c0b3ab01"
+    },
+    {
+      "path": "packages/launch-intelligence-sdk/bin/stockpair-radar.mjs",
+      "bytes": 2118,
+      "sha256": "d34fcbb5597a218e714b86a37a34875cf835e2e9babd89b9501063fd7a1016f0"
+    },
+    {
+      "path": "packages/launch-intelligence-sdk/package.json",
+      "bytes": 360,
+      "sha256": "4943e6083a2711f0157d0212362cb625dbfe7e204e759a3509a63f889d42debc"
+    },
+    {
+      "path": "packages/launch-intelligence-sdk/src/index.d.ts",
+      "bytes": 1054,
+      "sha256": "2d2e0421684858f589584fce47d4d8b3328726337040cdedb69a4fab1567589f"
+    },
+    {
+      "path": "packages/launch-intelligence-sdk/src/index.js",
+      "bytes": 2724,
+      "sha256": "8ca27ab7ae021c843768553822aea5c93c64871c7d6e4c21a94bcc9686d2f59d"
+    },
+    {
+      "path": "qa/V0.7.0_INTELLIGENCE_VERIFICATION.json",
+      "bytes": 4446,
+      "sha256": "a3b4ce96ffa6b15835e33e6cd029c8b35851f153e3263bbae3206d05a657bac2"
+    },
+    {
+      "path": "qa/demo-smoke-v0.7.0/cli-candidates.json",
+      "bytes": 2617,
+      "sha256": "51f26004be8920471e5c86b0084cb973b9bf1376029b97117d9678d1627fc0a4"
+    },
+    {
+      "path": "qa/demo-smoke-v0.7.0/cli-sources.json",
+      "bytes": 2568,
+      "sha256": "1e7bd0b5674842f51195843f889b0c2e5ea1d4276a6fa5f99e6be6dad31b7817"
+    },
+    {
+      "path": "qa/demo-smoke-v0.7.0/health.json",
+      "bytes": 1393,
+      "sha256": "7c4a91ff1c877adc929d0465d4a85856ddcc67378533454e8452dd96e9796d98"
+    },
+    {
+      "path": "qa/demo-smoke-v0.7.0/radar-alerts.json",
+      "bytes": 537,
+      "sha256": "8ffb37765b6b5d11c3ebae9e6d13a61f32bf929467b033a544def04ba7752286"
+    },
+    {
+      "path": "qa/demo-smoke-v0.7.0/radar-candidates.json",
+      "bytes": 1885,
+      "sha256": "cb396acb37d4b7381f08549bf9e79cfb0221356050b05d64830e286e0b58253d"
+    },
+    {
+      "path": "qa/demo-smoke-v0.7.0/radar-sources.json",
+      "bytes": 1754,
+      "sha256": "59c996a8d709581dc0c8fc18df6f1d0d9dad00cc178bcf52dad310eb3f70f158"
+    },
+    {
+      "path": "qa/demo-smoke-v0.7.0/summary.json",
+      "bytes": 466,
+      "sha256": "487e93cc46feb33996960e2fed6ee0a41d47753e3327a0de0c5a21d06012de22"
+    },
+    {
+      "path": "qa/demo-smoke-v0.7.0/ui-headers.txt",
+      "bytes": 210,
+      "sha256": "a9259f8a039ebb2317f95d224fa77c61340529d35fc5fcaca2ccdaedd8389221"
+    },
+    {
+      "path": "qa/verification-logs-v0.7.0/dependency-audit-status.json",
+      "bytes": 520,
+      "sha256": "084cc09516759ce03abfe62d6be49e8ab1433746d0e76d66108e27f8c59a33aa"
+    },
+    {
+      "path": "qa/verification-logs-v0.7.0/final-quick.log",
+      "bytes": 10947,
+      "sha256": "d01922a386515a4f0be248ba4532945ebb5dc82773a375fa076eb679b0a14cf8"
+    },
+    {
+      "path": "qa/verification-logs-v0.7.0/intelligence-tests.log",
+      "bytes": 2516,
+      "sha256": "40c1882fcfca83ad973a5b07e7eae0d3eeb7e5be469a174ed9d2c0722fc5de88"
+    },
+    {
+      "path": "qa/verification-logs-v0.7.0/quick-suite.log",
+      "bytes": 10551,
+      "sha256": "fb5497d0d0998e934db80a7d9b5bb474b38efd773fd4c35fa6719af3abb0f926"
+    },
+    {
+      "path": "qa/verification-logs-v0.7.0/release-check.log",
+      "bytes": 317,
+      "sha256": "861cda9e05909b90beb6129e305903a49aa30027f0233594632f9e5325e262f1"
+    },
+    {
+      "path": "qa/verification-logs-v0.7.0/sdk-pack.json",
+      "bytes": 945,
+      "sha256": "f3d69852b9e41e6ae023f53405117b55955c7b483adc30ca849d94eca1b902d9"
+    },
+    {
+      "path": "qa/verification-logs-v0.7.0/sdk-tar-contents.txt",
+      "bytes": 115,
+      "sha256": "b8db1f0683faa9c0383b650785b2d0c64d3e3873f618ff92d63bce3166081a95"
+    },
+    {
+      "path": "scripts/agent-sdk.test.mjs",
+      "bytes": 2083,
+      "sha256": "70e0ee5746fcc5cee50a81eaf882567e5dd4bed6142a2ab11cd05c413f7b499f"
+    },
+    {
+      "path": "scripts/integration-files.test.mjs",
+      "bytes": 2339,
+      "sha256": "bdd2f11f6d6068e657fc57350477aa0ebef1d488c16658afc36732a347210751"
+    },
+    {
+      "path": "scripts/launch-intelligence.test.mjs",
+      "bytes": 5731,
+      "sha256": "41847834f6f04933609ddd64c6b40e2b0d440e9be4ff204ba24eb2b5925f082c"
+    }
+  ]
+}

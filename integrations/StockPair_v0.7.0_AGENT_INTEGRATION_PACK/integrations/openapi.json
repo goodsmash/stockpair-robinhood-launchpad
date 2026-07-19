@@ -1,0 +1,117 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "StockPair Launch Intelligence API",
+    "version": "0.7.0",
+    "description": "Read-only launch discovery, ranking, alert and SSE API. This API never signs or broadcasts transactions."
+  },
+  "servers": [
+    { "url": "https://indexer.example.com", "description": "Production indexer" },
+    { "url": "http://127.0.0.1:8787", "description": "Disposable local demo" }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Service and chain health",
+        "responses": { "200": { "description": "Healthy or degraded service state" } }
+      }
+    },
+    "/api/radar/sources": {
+      "get": {
+        "summary": "List built-in launch-source adapter descriptors",
+        "responses": { "200": { "description": "Adapter descriptors" } }
+      }
+    },
+    "/api/radar/candidates": {
+      "get": {
+        "summary": "Rank normalized launch candidates",
+        "parameters": [
+          { "name": "chainId", "in": "query", "schema": { "type": "integer", "minimum": 1 } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer", "minimum": 1, "maximum": 500, "default": 100 } },
+          { "name": "stage", "in": "query", "schema": { "enum": ["detected", "curve", "pooled", "graduated", "active"] } },
+          { "name": "minScore", "in": "query", "schema": { "type": "number", "minimum": 0, "maximum": 100 } },
+          { "name": "maxRiskScore", "in": "query", "schema": { "type": "number", "minimum": 0, "maximum": 100 } },
+          { "name": "q", "in": "query", "schema": { "type": "string", "maxLength": 160 } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ranked candidates",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["generatedAt", "count", "total", "policy", "candidates"],
+                  "properties": {
+                    "generatedAt": { "type": "string", "format": "date-time" },
+                    "count": { "type": "integer" },
+                    "total": { "type": "integer" },
+                    "policy": { "type": "object" },
+                    "candidates": { "type": "array", "items": { "$ref": "#/components/schemas/LaunchCandidate" } }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/radar/alerts": {
+      "get": {
+        "summary": "Evaluate configured alert rules against the current radar snapshot",
+        "parameters": [
+          { "name": "chainId", "in": "query", "schema": { "type": "integer", "minimum": 1 } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer", "minimum": 1, "maximum": 500, "default": 100 } }
+        ],
+        "responses": { "200": { "description": "Matched rules and candidates" } }
+      }
+    },
+    "/api/scout/summary": {
+      "get": {
+        "summary": "Scout coverage and counts",
+        "responses": { "200": { "description": "Coverage summary" } }
+      }
+    },
+    "/api/scout/tokens": {
+      "get": {
+        "summary": "Raw detected ERC-20-like contracts",
+        "responses": { "200": { "description": "Detected tokens" } }
+      }
+    },
+    "/api/stream": {
+      "get": {
+        "summary": "Server-sent Scout event stream",
+        "responses": {
+          "200": {
+            "description": "text/event-stream",
+            "content": { "text/event-stream": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "LaunchCandidate": {
+        "type": "object",
+        "required": ["id", "chainId", "tokenAddress", "risk", "scores", "execution"],
+        "properties": {
+          "id": { "type": "string" },
+          "chainId": { "type": "integer" },
+          "tokenAddress": { "type": "string", "pattern": "^0x[0-9a-fA-F]{40}$" },
+          "stage": { "type": "string" },
+          "risk": { "type": "object" },
+          "scores": { "type": "object" },
+          "execution": {
+            "type": "object",
+            "properties": {
+              "eligibleForReview": { "type": "boolean" },
+              "autoExecutionAllowed": { "const": false },
+              "blockers": { "type": "array", "items": { "type": "string" } },
+              "requiredNextSteps": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    }
+  }
+}

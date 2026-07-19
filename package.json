@@ -50,6 +50,7 @@
     "solc": "^0.8.30"
   },
   "dependencies": {
+    "@stockpair/launch-intelligence-sdk": "file:packages/launch-intelligence-sdk/package",
     "viem": "^2.55.2"
   },
   "engines": {

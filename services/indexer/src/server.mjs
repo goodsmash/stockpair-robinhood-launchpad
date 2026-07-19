@@ -237,6 +237,65 @@ const server = http.createServer(async (req, res) => {
       const result = scout.codeFamily(hash)
       return send(req, res, result ? 200 : 404, result ?? { error: 'Code family not indexed' })
     }
+
+    // v0.7.0 Launch Radar endpoints
+    if (url.pathname === '/api/radar/sources') {
+      return send(req, res, 200, {
+        sources: [
+          { id: 'robinhood-testnet-scout', adapter: 'generic-evm-scout', chainId: config.chainId, enabled: true, addresses: {}, trust: { requireRuntimeHash: false, requireProtocolVersion: false, requireExplorerVerification: true } },
+        ],
+        version: '0.7.0'
+      })
+    }
+    if (url.pathname === '/api/radar/candidates') {
+      const contracts = await scout.contracts({ limit: String(Math.max(1, Math.min(50, Number(url.searchParams.get('limit') ?? 20)))) }) || []
+      const head = (scout.summary()?.coverage?.[0]?.head) ? Number(scout.summary().coverage[0].head) : 1
+      const candidates = (Array.isArray(contracts) ? contracts : (contracts?.contracts || [])).map((c, i) => ({
+        id: `scout-${c.address || i}`,
+        chainId: config.chainId,
+        address: c.address,
+        token: c.token || c.address,
+        deploymentBlock: c.blockNumber,
+        deployer: c.deployer,
+        transactionHash: c.transactionHash,
+        codeHash: c.codeHash,
+        source: 'robinhood-testnet-scout',
+        createdAt: c.timestamp ? new Date(c.timestamp * 1000).toISOString() : new Date().toISOString(),
+        scores: {
+          safety: Math.max(0, 100 - ((c.risk?.score || 0) * 2)),
+          liquidity: 0,
+          traction: Math.min(80, ((c.evidence?.length || 0)) * 10),
+          freshness: c.blockNumber ? Math.max(0, Math.min(100, 100 - ((head - Number(c.blockNumber)) / 1000))) : 50,
+          provenance: (c.risk?.status === 'LOW') ? 80 : 40
+        },
+        riskScore: c.risk?.score || 30,
+        status: (c.risk?.status === 'LOW') ? 'verified' : 'unverified',
+        verifiedPools: (c.risk?.status === 'LOW') ? 1 : 0,
+        swaps: c.evidence?.length || 0,
+        executionReview: {
+          autoExecutionAllowed: false, userSignatureRequired: true, privateKeyStorageAllowed: false,
+          frontRunningAllowed: false, sandwichingAllowed: false, antiBotBypassAllowed: false,
+          blockers: (c.risk?.status === 'LOW') ? [] : ['Unverified contract — manual review required'],
+          requiredSteps: ['Verify source code', 'Review deployer history', 'Check LP lock']
+        }
+      }))
+      return send(req, res, 200, { candidates, total: candidates.length, version: '0.7.0' })
+    }
+    if (url.pathname === '/api/radar/alerts') {
+      const contracts = await scout.contracts({ limit: '20' }) || []
+      const list = Array.isArray(contracts) ? contracts : (contracts?.contracts || [])
+      const triggered = list.filter(c => (c.risk?.status !== 'LOW') && (c.evidence?.length > 0)).map(c => ({
+        alertId: `unverified-${c.address?.slice(2,10)}`, candidateId: `scout-${c.address}`,
+        ruleId: 'manual-review-new-token', timestamp: new Date().toISOString(),
+        chainId: config.chainId, address: c.address,
+        reason: `Unverified contract ${c.address?.slice(0,10)}... with ${c.evidence?.length || 0} evidence records`
+      }))
+      return send(req, res, 200, {
+        rules: [{ id: 'manual-review-new-token', enabled: true, chainIds: [config.chainId], minScore: 45, maxRiskScore: 40, minVerifiedPools: 0, minSwaps: 0, maxAgeMinutes: 30, requirePublicEvidence: false, actions: ['ui'] }],
+        alerts: triggered,
+        version: '0.7.0'
+      })
+    }
     return send(req, res, 404, { error: 'Not found' })
   } catch (error) {
     console.error(error instanceof Error ? error.message : error)
