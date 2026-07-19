@@ -467,3 +467,15 @@ body:after { content:''; position:fixed; inset:0; z-index:-1; pointer-events:non
   .modal-card { width: 100%; max-height: 92vh; border-radius: 18px 18px 10px 10px; }
   .modal-actions { position: sticky; bottom: -1px; padding-top: 12px; background: linear-gradient(transparent, var(--panel) 28%); }
 }
+.radar-card .score-grid{display:grid;grid-template-columns:1fr 1fr;gap:.4rem .8rem;margin:.6rem 0}
+.radar-card .score-grid div{display:flex;flex-direction:column;gap:2px}
+.radar-card .score-grid label{font-size:.7rem;opacity:.7}
+.score-bar{display:block;height:4px;background:linear-gradient(90deg,#4adfff,#ffe06a);border-radius:2px;transition:width .3s}
+.radar-card .radar-header{display:flex;justify-content:space-between;align-items:center}
+.radar-card .radar-meta{display:flex;gap:.8rem;font-size:.72rem;opacity:.7;margin:.4rem 0}
+.radar-card .risk-badge{padding:2px 8px;border-radius:4px;font-size:.72rem;font-weight:700}
+.radar-card .risk-badge.low{background:#0a3;color:#fff}
+.radar-card .risk-badge.caution{background:#c80;color:#fff}
+.radar-card .risk-badge.danger{background:#c22;color:#fff}
+.radar-card{border:1px solid rgba(74,225,255,.15)}
+.radar-card:hover{border-color:rgba(74,225,255,.4)}

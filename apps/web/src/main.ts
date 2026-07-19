@@ -23,7 +23,7 @@ declare global {
   interface Window { ethereum?: EIP1193Provider }
 }
 
-type View = 'discover' | 'scout' | 'trade' | 'launch' | 'portfolio' | 'scanner' | 'activity' | 'settings' | 'admin'
+type View = 'discover' | 'scout' | 'radar' | 'trade' | 'launch' | 'portfolio' | 'scanner' | 'activity' | 'settings' | 'admin'
 type RiskStatus = 'TRUSTED' | 'LOW' | 'CAUTION' | 'DANGER' | 'BLOCKED'
 
 type LaunchView = {
@@ -293,6 +293,9 @@ let scoutPools: ScoutPool[] = []
 let scoutSwaps: ScoutSwap[] = []
 let scoutFilter = 'all'
 let scoutQuery = ''
+let radarCandidates: RadarCandidate[] = []
+type RadarScores = { safety: number; liquidity: number; traction: number; freshness: number; provenance: number }
+type RadarCandidate = { id: string; chainId: number; address: string; deploymentBlock: string; deployer: string; transactionHash: string; codeHash: string; scores: RadarScores; riskScore: number; status: string; verifiedPools: number; swaps: number; executionReview: { blockers: string[]; requiredSteps: string[] } }
 let eventSource: EventSource | undefined
 const watchlist = new Set<string>(safeStoredArray('stockpair-watchlist'))
 let searchQuery = ''
@@ -324,6 +327,7 @@ app.innerHTML = `
         ${navButton('launch', '↗', 'Launch')}
         ${navButton('portfolio', '◫', 'Portfolio')}
         <span class="nav-label">Intelligence</span>
+        ${navButton('radar', '◈', 'Launch Radar')}
         ${navButton('scout', '◉', 'Chain Scout')}
         ${navButton('scanner', '⌾', 'Risk Scanner')}
         ${navButton('activity', '≋', 'Activity')}
@@ -630,6 +634,7 @@ async function refreshData(showToast = false) {
   scoutContracts = results[4].status === 'fulfilled' && Array.isArray(results[4].value) ? results[4].value.map(normalizeScoutContract).filter((item): item is ScoutContract => item !== null) : scoutContracts
   scoutPools = results[5].status === 'fulfilled' && Array.isArray(results[5].value) ? results[5].value.map(normalizeScoutPool).filter((item): item is ScoutPool => item !== null) : scoutPools
   scoutSwaps = results[6].status === 'fulfilled' && Array.isArray(results[6].value) ? results[6].value.map(normalizeScoutSwap).filter((item): item is ScoutSwap => item !== null) : scoutSwaps
+  await fetchRadar()
   updateChrome()
   renderView()
   if (showToast) toast('Live chain data refreshed', 'success')
@@ -641,6 +646,7 @@ const pageMeta: Record<View, { group: string; title: string }> = {
   launch: { group: 'Markets', title: 'Launch' },
   portfolio: { group: 'Markets', title: 'Portfolio' },
   scout: { group: 'Intelligence', title: 'Chain Scout' },
+  radar: { group: 'Intelligence', title: 'Launch Radar' },
   scanner: { group: 'Intelligence', title: 'Risk Scanner' },
   activity: { group: 'Intelligence', title: 'Activity' },
   settings: { group: 'System', title: 'Settings' },
@@ -744,6 +750,42 @@ function scoutExplorer(base: string | null | undefined, kind: 'address' | 'tx', 
 function evidencePills(evidence: ScoutEvidence[]): string { return evidence.length ? `<div class="evidence-row">${evidence.slice(0, 3).map((item) => `<span class="evidence-pill" title="${escapeAttr(item.source ?? '')}">${escapeHtml(item.entityName ?? item.type)} · ${escapeHtml(item.confidence ?? 'evidence')}</span>`).join('')}</div>` : '<span class="muted">No public attribution evidence</span>' }
 function scoutRiskBadge(risk?: ScoutRisk): string { return risk ? badge(risk.status) : badge('CAUTION') }
 function timeAgo(seconds?: number | null): string { if (!seconds) return 'time unavailable'; const delta = Math.max(0, nowSeconds() - seconds); if (delta < 60) return `${delta}s ago`; if (delta < 3600) return `${Math.floor(delta/60)}m ago`; if (delta < 86400) return `${Math.floor(delta/3600)}h ago`; return `${Math.floor(delta/86400)}d ago` }
+async function fetchRadar(): Promise<void> {
+  try {
+    const res = await fetch(`${indexerUrl}/api/radar/candidates?limit=50`, { headers: { accept: 'application/json' } })
+    if (!res.ok) return
+    const data = await res.json()
+    if (Array.isArray(data?.candidates)) radarCandidates = data.candidates
+  } catch { /* indexer may be unavailable */ }
+}
+
+function renderRadar(): string {
+  const rows = radarCandidates
+  const scoringBar = (v: number) => `<span class="score-bar" style="width:${Math.max(0,Math.min(100,v))}%"></span>`
+  return `<section class="section-block">
+    <div class="section-heading"><div><h2>◈ Launch Radar</h2><p>Live Robinhood Chain testnet. Scores never authorize execution — every candidate requires review.</p></div></div>
+    <div class="scout-grid">${rows.length ? rows.map(c => {
+      const s = c.scores || { safety:50, liquidity:0, traction:0, freshness:50, provenance:30 }
+      return `<article class="card-surface radar-card">
+        <div class="radar-header"><h3>${escapeHtml(c.address?.slice(0,14) || c.id)}</h3><span class="risk-badge ${c.riskScore <= 20 ? 'low' : c.riskScore <= 40 ? 'caution' : 'danger'}">risk ${c.riskScore}/100</span></div>
+        <div class="score-grid">
+          <div><label>Safety ${Math.round(s.safety)}</label>${scoringBar(s.safety)}</div>
+          <div><label>Provenance ${Math.round(s.provenance)}</label>${scoringBar(s.provenance)}</div>
+          <div><label>Freshness ${Math.round(s.freshness)}</label>${scoringBar(s.freshness)}</div>
+          <div><label>Traction ${Math.round(s.traction)}</label>${scoringBar(s.traction)}</div>
+        </div>
+        <div class="radar-meta">
+          <span>Block #${Number(c.deploymentBlock).toLocaleString()}</span>
+          <span>Deployer ${escapeHtml(c.deployer?.slice(0,12) || '?')}...</span>
+          <span>${escapeHtml(c.status || 'unverified')}</span>
+        </div>
+        ${c.executionReview?.blockers?.length ? `<div class="callout danger">⛔ ${c.executionReview.blockers.map(escapeHtml).join('; ')}</div>` : ''}
+      </article>`
+    }).join('') : emptyState('No candidates yet', 'The Launch Radar refreshes as the Chain Scout discovers new contracts. Ensure the indexer is connected to a live RPC endpoint.')}</div>
+    <div class="callout info">◈ Powered by StockPair Launch Intelligence v0.7.0. ${rows.length} candidates indexed.</div>
+  </section>`
+}
+
 function renderScoutContract(item: ScoutContract): string {
   const name = item.token?.symbol ?? 'CONTRACT'
   const subtitle = item.token ? `${item.token.name ?? 'ERC-20-like token'} · ${item.token.decimals ?? '?'} decimals` : `${item.codeSize.toLocaleString()} byte runtime`
@@ -974,7 +1016,7 @@ function renderAdmin(): string {
 
 function renderView() {
   const root = document.querySelector<HTMLElement>('#view-root')!
-  const renderers: Record<View, () => string> = { discover: renderDiscover, scout: renderScout, trade: renderTrade, launch: renderLaunch, portfolio: renderPortfolio, scanner: renderScanner, activity: renderActivity, settings: renderSettings, admin: renderAdmin }
+  const renderers: Record<View, () => string> = { discover: renderDiscover, scout: renderScout, radar: renderRadar, trade: renderTrade, launch: renderLaunch, portfolio: renderPortfolio, scanner: renderScanner, activity: renderActivity, settings: renderSettings, admin: renderAdmin }
   root.innerHTML = renderers[activeView]()
   bindViewEvents()
   if (activeView === 'portfolio' && account) void loadPortfolio()
@@ -1472,7 +1514,7 @@ function connectScoutStream() {
       if (kind === 'contract-created' || kind === 'token-detected') { const item = normalizeScoutContract(event); if (!item) throw new Error('Invalid contract stream event'); scoutContracts = [item, ...scoutContracts.filter((row)=>row.address.toLowerCase()!==item.address.toLowerCase())].slice(0,150); if (item.evidence.length) toast(`Publicly labeled builder activity: ${item.token?.symbol ?? shortAddress(item.address)}`, 'info') }
       if (kind === 'pool-created') { const item = normalizeScoutPool(event); if (!item) throw new Error('Invalid pool stream event'); scoutPools = [item, ...scoutPools].slice(0,100); if (watched(item.token0) || watched(item.token1) || watched(item.pool)) toast('Watchlist alert: new pool relationship detected', 'info') }
       if (kind === 'swap-observed') { const item = normalizeScoutSwap(event); if (!item) throw new Error('Invalid swap stream event'); scoutSwaps = [item, ...scoutSwaps].slice(0,100); if (watched(item.pool)) toast('Watchlist alert: swap observed', 'info') }
-      if (activeView === 'scout' || activeView === 'discover') renderView()
+      if (activeView === 'scout' || activeView === 'radar' || activeView === 'discover') renderView()
     } catch { /* malformed stream item is ignored */ }
   })
   eventSource.onerror = () => updateChrome()
@@ -1499,9 +1541,9 @@ if (window.ethereum) {
   })
   window.ethereum.on?.('chainChanged', () => window.location.reload())
 }
-
+window.addEventListener('hashchange', () => { const value = window.location.hash.slice(1) as View; if (['discover', 'scout', 'radar', 'trade', 'launch', 'portfolio', 'scanner', 'activity', 'settings'].includes(value) || (enableOperations && value === 'admin')) setView(value) })
 const initialHash = window.location.hash.slice(1) as View
-if (['discover', 'scout', 'trade', 'launch', 'portfolio', 'scanner', 'activity', 'settings'].includes(initialHash) || (enableOperations && initialHash === 'admin')) activeView = initialHash
+if (['discover', 'scout', 'radar', 'trade', 'launch', 'portfolio', 'scanner', 'activity', 'settings'].includes(initialHash) || (enableOperations && initialHash === 'admin')) activeView = initialHash
 renderView()
 connectScoutStream()
 void refreshData()
