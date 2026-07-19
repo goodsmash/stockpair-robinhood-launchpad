@@ -1,0 +1,253 @@
+{
+  "release": "StockPair v0.6.0 final security, UI and deployment handoff",
+  "generatedAt": "2026-07-19T18:12:19.518Z",
+  "status": "PASS_WITH_EXTERNAL_AUDIT_TARGET_CHAIN_ACCOUNT_AND_MANAGED_BROWSER_GATES",
+  "protocol": {
+    "onChainVersion": "STOCKPAIR_LAUNCHPAD_V0.6.0",
+    "protocolVersion": "0x154b42508933d53fbe3cac1f7e0e8ccf4a36169ed150f9171e2fae441e220309",
+    "poolProtocolVersion": "0x0269a24b872333bf362a076efb861f9c12f7fee6d061827d296ef0a6d9462e5c",
+    "launchTokenProtocolVersion": "0xdc9567935f3f37b6cdf78141b374ee0d1f0ea741034125cc37f2e42e0727d40b",
+    "eligibilityProtocolVersion": "0x31ce7c3469dd0a4b21e90c5bf36dfcb8560d5de52d2865d311aa39280659dd26",
+    "sourceBundleSha256": "daade5864852d24403d5c6c90faddf19fd13add995a0a8dbf1056d2056f5a392",
+    "compiler": "0.8.30+commit.73712a01.Emscripten.clang",
+    "compilerSettingsSha256": "b013dcf551be73a0bc1585118a70e9a6e24d60c8979660b2323ec6d4c5e18685",
+    "compiledContracts": 31,
+    "controls": {
+      "maximumDeadlineSeconds": 1800,
+      "maximumSwapSlippageLoosenessBps": 300,
+      "maximumLiquiditySlippageLoosenessBps": 100,
+      "maximumSwapInputReserveBps": 500,
+      "administrationDelaySeconds": 172800,
+      "pendingActionWindowSeconds": 604800,
+      "pendingOwnershipWindowSeconds": 604800,
+      "maximumEligibilityDurationSeconds": 2592000,
+      "minimumInitialLpLockSeconds": 31536000,
+      "maximumCreatorAllocationBps": 1000
+    }
+  },
+  "confirmedFindingsClosed": [
+    "hostile-indexer-rest-sse-dom-and-link-injection",
+    "compromised-frontend-deadline-and-minimum-output-abuse",
+    "immediate-eligibility-and-ownership-recovery-authority",
+    "non-exact-approval-and-incomplete-pool-provenance",
+    "keyboard-modal-focus-and-mobile-review-defects"
+  ],
+  "product": {
+    "responsiveUserUi": true,
+    "views": [
+      "discover",
+      "trade",
+      "launch",
+      "portfolio",
+      "scout",
+      "scanner",
+      "activity",
+      "settings"
+    ],
+    "mobileNavigation": true,
+    "separateExecutionAndDataDegradationStates": true,
+    "runtimeHostileDataNormalization": true,
+    "keyboardContainedDialogs": true,
+    "escapeToClose": true,
+    "previousFocusRestoration": true,
+    "activeNavigationAriaCurrent": true,
+    "visibleFocusIndicators": true,
+    "diagnosticsExport": true,
+    "localPrivacyControls": true,
+    "publicAdministrationEnabled": false
+  },
+  "quickSuite": {
+    "passed": true,
+    "solidityFilesChecked": 37,
+    "sourceFilesStaticChecked": 48,
+    "swapPropertyCases": 100000,
+    "monotonicQuoteCases": 10000,
+    "liquidityPropertyCases": 50000,
+    "totalPropertyCases": 160000,
+    "scannerTests": 8,
+    "indexerPerimeterTests": 3,
+    "uiSecurityAccessibilityTests": 7,
+    "scoutDeploymentDetection": true,
+    "typescript": true,
+    "webProductionBuild": true,
+    "hardenedCsp": true,
+    "sourceArtifactValidation": true,
+    "browserAbiMatched": true
+  },
+  "e2e": {
+    "passed": true,
+    "count": 13,
+    "passedCount": 13,
+    "passedScenarios": [
+      "launch-provenance-trade-vesting-lock",
+      "paused-self-exit",
+      "delisted-self-exit",
+      "creator-cap-lock-floor",
+      "fee-token-atomic-rejection",
+      "reentrancy-rejection",
+      "oracle-rejection",
+      "full-runtime-bytecode-evasion-rejection",
+      "compromised-frontend-deadline-slippage-rejection",
+      "eligibility-ownership-recovery-delay",
+      "admin-delay-guardian-cancel",
+      "strict-asset-proxy-rejection",
+      "vesting-minimum-value-self-recipient-max-swap"
+    ],
+    "evidence": "qa/verification-logs-v0.6.0/e2e-summary.json",
+    "environmentNote": "Ganache emitted an optional native \u00b5WS compatibility warning under Node 22 and used its JavaScript fallback. Only completed TAP logs with a nonzero pass count and # fail 0 are counted."
+  },
+  "fullStackSmoke": {
+    "release": "0.6.0",
+    "recordedAt": "2026-07-19T18:06:10.536Z",
+    "localOnly": true,
+    "disposableDemoAcknowledgement": true,
+    "chainId": 31337,
+    "services": {
+      "evm": {
+        "ok": true,
+        "url": "http://127.0.0.1:8545"
+      },
+      "indexer": {
+        "ok": true,
+        "version": "0.6.0",
+        "url": "http://127.0.0.1:8787"
+      },
+      "uiHttp": {
+        "ok": true,
+        "url": "http://127.0.0.1:5173"
+      },
+      "sse": {
+        "ok": true,
+        "contentType": "text/event-stream"
+      }
+    },
+    "trust": {
+      "configured": true,
+      "trusted": true,
+      "factoryAddress": "0x254dffcd3277C0b1660F6d42EFbB754edaBAbC2B",
+      "actualCodeHash": "0xb18155738639f87a2f1c8810ed3ba346c5e877c01c41b6530d246ae90ecb2bb3",
+      "expectedCodeHash": "0xb18155738639f87a2f1c8810ed3ba346c5e877c01c41b6530d246ae90ecb2bb3",
+      "codeHashMatches": true,
+      "protocolVersion": "0x154b42508933d53fbe3cac1f7e0e8ccf4a36169ed150f9171e2fae441e220309",
+      "expectedProtocolVersion": "0x154b42508933d53fbe3cac1f7e0e8ccf4a36169ed150f9171e2fae441e220309",
+      "versionMatches": true
+    },
+    "indexed": {
+      "launches": 1,
+      "contracts": 4,
+      "tokens": 1,
+      "pools": 0,
+      "deployers": 1,
+      "scoutRunning": true
+    },
+    "securityHeaders": {
+      "sseNoSniff": true,
+      "sseFrameDeny": true,
+      "sseNoCache": true,
+      "sseCrossOriginResourcePolicy": true,
+      "apiVersion": true
+    },
+    "browserVisualCapture": {
+      "executed": false,
+      "reason": "Managed Chromium policy in this execution environment blocked all localhost, private-network, and file URL navigation before the application loaded. Static UI contracts and HTTP delivery passed; no screenshot or browser-console pass is claimed."
+    }
+  },
+  "dependencyAudit": {
+    "completed": true,
+    "rootRuntime": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "webRuntime": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    }
+  },
+  "deploymentHandoff": {
+    "localSetupPassed": true,
+    "localStackPassed": true,
+    "generatedLocalStateRemoved": true,
+    "finalDefaultWebBundleRebuiltAfterLocalCleanup": true,
+    "vercelConfigPresent": true,
+    "productionEnvironmentValidationPassed": true,
+    "productionCspGenerationPassed": true,
+    "productionLocalhostRejectedByPolicy": true,
+    "indexerContainerDefinitionPresent": true,
+    "githubCiCodeqlDependencyAndReleaseWorkflowsPresent": true,
+    "githubWorkflowYamlParsed": true,
+    "githubPushPerformed": false,
+    "vercelAccountDeploymentPerformed": false,
+    "dockerImageBuilt": false,
+    "dockerUnavailableInEnvironment": true
+  },
+  "artifacts": {
+    "StockCoinLaunchpad": {
+      "runtimeBytes": 19333,
+      "artifactSha256": "f07b7c2d9933c052afdd241466793eddf7cfe749f1d80bef2b7b581c508fa14e"
+    },
+    "StockCoinPool": {
+      "runtimeBytes": 10197,
+      "artifactSha256": "bc2f0182ce87d7d76223ea456d240907ac28bc8fb15b22cb4952d60244510ba2"
+    },
+    "LaunchToken": {
+      "runtimeBytes": 1710,
+      "artifactSha256": "16240f0f43a2a8421b3b0a42faa8a65a8e34685f2ab2586911e2b3c9f34aa99e"
+    },
+    "LiquidityLocker": {
+      "runtimeBytes": 2172,
+      "artifactSha256": "7894b134345692628a620c24efbdecfaf07035e714e05748a4ed2a8955ef6169"
+    },
+    "CreatorVestingVault": {
+      "runtimeBytes": 2762,
+      "artifactSha256": "17a9ba8ff553c70f5a2a66c84078b8343b73be403c409048c96d379e83c0e816"
+    },
+    "AttestedEligibilityGate": {
+      "runtimeBytes": 4562,
+      "artifactSha256": "61ac87a28827c495457fccf1dbf09294a1cb6c8dbffaccd7ffb49959b9d0943f"
+    }
+  },
+  "incidentBoundary": {
+    "reportedHistoricalUserLoss": true,
+    "rootCauseProven": false,
+    "fundRecoveryGuaranteed": false,
+    "historicalDeploymentsPatched": false,
+    "missingEvidence": [
+      "attack transaction hashes",
+      "affected deployed addresses",
+      "compromised frontend bundle and hash",
+      "DNS/CDN/CI audit logs",
+      "signer and RPC logs"
+    ]
+  },
+  "notExecuted": [
+    "independent smart-contract and economic audit",
+    "independent browser/indexer/infrastructure penetration audit",
+    "live Robinhood Chain target-chain deployment and reorg/RPC-failure tests",
+    "live Vercel account deployment",
+    "GitHub repository push and organization-specific branch/environment protections",
+    "Docker image build and image scanning because Docker is unavailable",
+    "local Foundry and Slither because their CLIs are unavailable",
+    "production multisig/guardian and monitoring configuration",
+    "legal/compliance approval",
+    "forensic attribution or recovery",
+    "live responsive screenshot and browser-console capture because managed Chromium blocked local and file navigation"
+  ],
+  "evidence": {
+    "finalQuick": "qa/verification-logs-v0.6.0/final-quick-clean.log",
+    "finalWebBuild": "qa/verification-logs-v0.6.0/final-web-build.log",
+    "setup": "qa/verification-logs-v0.6.0/setup-local.log",
+    "vercelProductionBuild": "qa/verification-logs-v0.6.0/vercel-production-build-final.log",
+    "e2eDirectory": "qa/verification-logs-v0.6.0",
+    "e2eSummary": "qa/verification-logs-v0.6.0/e2e-summary.json",
+    "smoke": "qa/demo-smoke-v0.6.0/summary.json",
+    "securityReport": "docs/SECURITY_TEST_REPORT.md"
+  }
+}

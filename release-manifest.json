@@ -1,0 +1,1466 @@
+{
+  "schemaVersion": 1,
+  "release": "StockPair v0.6.0 final security and product handoff",
+  "generatedAt": "2026-07-19T18:23:35.361Z",
+  "status": "PASS_WITH_EXTERNAL_AUDIT_TARGET_CHAIN_ACCOUNT_AND_MANAGED_BROWSER_GATES",
+  "packagePurpose": "Final hardened local, Vercel frontend, external indexer container, GitHub automation, hostile-data UI, protocol controls and agent handoff candidate.",
+  "sourceBundleSha256": "daade5864852d24403d5c6c90faddf19fd13add995a0a8dbf1056d2056f5a392",
+  "compiler": "0.8.30+commit.73712a01.Emscripten.clang",
+  "files": 240,
+  "totalBytes": 2071993,
+  "verification": {
+    "release": "StockPair v0.6.0 final security, UI and deployment handoff",
+    "generatedAt": "2026-07-19T18:12:19.518Z",
+    "status": "PASS_WITH_EXTERNAL_AUDIT_TARGET_CHAIN_ACCOUNT_AND_MANAGED_BROWSER_GATES",
+    "protocol": {
+      "onChainVersion": "STOCKPAIR_LAUNCHPAD_V0.6.0",
+      "protocolVersion": "0x154b42508933d53fbe3cac1f7e0e8ccf4a36169ed150f9171e2fae441e220309",
+      "poolProtocolVersion": "0x0269a24b872333bf362a076efb861f9c12f7fee6d061827d296ef0a6d9462e5c",
+      "launchTokenProtocolVersion": "0xdc9567935f3f37b6cdf78141b374ee0d1f0ea741034125cc37f2e42e0727d40b",
+      "eligibilityProtocolVersion": "0x31ce7c3469dd0a4b21e90c5bf36dfcb8560d5de52d2865d311aa39280659dd26",
+      "sourceBundleSha256": "daade5864852d24403d5c6c90faddf19fd13add995a0a8dbf1056d2056f5a392",
+      "compiler": "0.8.30+commit.73712a01.Emscripten.clang",
+      "compilerSettingsSha256": "b013dcf551be73a0bc1585118a70e9a6e24d60c8979660b2323ec6d4c5e18685",
+      "compiledContracts": 31,
+      "controls": {
+        "maximumDeadlineSeconds": 1800,
+        "maximumSwapSlippageLoosenessBps": 300,
+        "maximumLiquiditySlippageLoosenessBps": 100,
+        "maximumSwapInputReserveBps": 500,
+        "administrationDelaySeconds": 172800,
+        "pendingActionWindowSeconds": 604800,
+        "pendingOwnershipWindowSeconds": 604800,
+        "maximumEligibilityDurationSeconds": 2592000,
+        "minimumInitialLpLockSeconds": 31536000,
+        "maximumCreatorAllocationBps": 1000
+      }
+    },
+    "confirmedFindingsClosed": [
+      "hostile-indexer-rest-sse-dom-and-link-injection",
+      "compromised-frontend-deadline-and-minimum-output-abuse",
+      "immediate-eligibility-and-ownership-recovery-authority",
+      "non-exact-approval-and-incomplete-pool-provenance",
+      "keyboard-modal-focus-and-mobile-review-defects"
+    ],
+    "product": {
+      "responsiveUserUi": true,
+      "views": [
+        "discover",
+        "trade",
+        "launch",
+        "portfolio",
+        "scout",
+        "scanner",
+        "activity",
+        "settings"
+      ],
+      "mobileNavigation": true,
+      "separateExecutionAndDataDegradationStates": true,
+      "runtimeHostileDataNormalization": true,
+      "keyboardContainedDialogs": true,
+      "escapeToClose": true,
+      "previousFocusRestoration": true,
+      "activeNavigationAriaCurrent": true,
+      "visibleFocusIndicators": true,
+      "diagnosticsExport": true,
+      "localPrivacyControls": true,
+      "publicAdministrationEnabled": false
+    },
+    "quickSuite": {
+      "passed": true,
+      "solidityFilesChecked": 37,
+      "sourceFilesStaticChecked": 48,
+      "swapPropertyCases": 100000,
+      "monotonicQuoteCases": 10000,
+      "liquidityPropertyCases": 50000,
+      "totalPropertyCases": 160000,
+      "scannerTests": 8,
+      "indexerPerimeterTests": 3,
+      "uiSecurityAccessibilityTests": 7,
+      "scoutDeploymentDetection": true,
+      "typescript": true,
+      "webProductionBuild": true,
+      "hardenedCsp": true,
+      "sourceArtifactValidation": true,
+      "browserAbiMatched": true
+    },
+    "e2e": {
+      "passed": true,
+      "count": 13,
+      "passedCount": 13,
+      "passedScenarios": [
+        "launch-provenance-trade-vesting-lock",
+        "paused-self-exit",
+        "delisted-self-exit",
+        "creator-cap-lock-floor",
+        "fee-token-atomic-rejection",
+        "reentrancy-rejection",
+        "oracle-rejection",
+        "full-runtime-bytecode-evasion-rejection",
+        "compromised-frontend-deadline-slippage-rejection",
+        "eligibility-ownership-recovery-delay",
+        "admin-delay-guardian-cancel",
+        "strict-asset-proxy-rejection",
+        "vesting-minimum-value-self-recipient-max-swap"
+      ],
+      "evidence": "qa/verification-logs-v0.6.0/e2e-summary.json",
+      "environmentNote": "Ganache emitted an optional native µWS compatibility warning under Node 22 and used its JavaScript fallback. Only completed TAP logs with a nonzero pass count and # fail 0 are counted."
+    },
+    "fullStackSmoke": {
+      "release": "0.6.0",
+      "recordedAt": "2026-07-19T18:06:10.536Z",
+      "localOnly": true,
+      "disposableDemoAcknowledgement": true,
+      "chainId": 31337,
+      "services": {
+        "evm": {
+          "ok": true,
+          "url": "http://127.0.0.1:8545"
+        },
+        "indexer": {
+          "ok": true,
+          "version": "0.6.0",
+          "url": "http://127.0.0.1:8787"
+        },
+        "uiHttp": {
+          "ok": true,
+          "url": "http://127.0.0.1:5173"
+        },
+        "sse": {
+          "ok": true,
+          "contentType": "text/event-stream"
+        }
+      },
+      "trust": {
+        "configured": true,
+        "trusted": true,
+        "factoryAddress": "0x254dffcd3277C0b1660F6d42EFbB754edaBAbC2B",
+        "actualCodeHash": "0xb18155738639f87a2f1c8810ed3ba346c5e877c01c41b6530d246ae90ecb2bb3",
+        "expectedCodeHash": "0xb18155738639f87a2f1c8810ed3ba346c5e877c01c41b6530d246ae90ecb2bb3",
+        "codeHashMatches": true,
+        "protocolVersion": "0x154b42508933d53fbe3cac1f7e0e8ccf4a36169ed150f9171e2fae441e220309",
+        "expectedProtocolVersion": "0x154b42508933d53fbe3cac1f7e0e8ccf4a36169ed150f9171e2fae441e220309",
+        "versionMatches": true
+      },
+      "indexed": {
+        "launches": 1,
+        "contracts": 4,
+        "tokens": 1,
+        "pools": 0,
+        "deployers": 1,
+        "scoutRunning": true
+      },
+      "securityHeaders": {
+        "sseNoSniff": true,
+        "sseFrameDeny": true,
+        "sseNoCache": true,
+        "sseCrossOriginResourcePolicy": true,
+        "apiVersion": true
+      },
+      "browserVisualCapture": {
+        "executed": false,
+        "reason": "Managed Chromium policy in this execution environment blocked all localhost, private-network, and file URL navigation before the application loaded. Static UI contracts and HTTP delivery passed; no screenshot or browser-console pass is claimed."
+      }
+    },
+    "dependencyAudit": {
+      "completed": true,
+      "rootRuntime": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      },
+      "webRuntime": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      }
+    },
+    "deploymentHandoff": {
+      "localSetupPassed": true,
+      "localStackPassed": true,
+      "generatedLocalStateRemoved": true,
+      "finalDefaultWebBundleRebuiltAfterLocalCleanup": true,
+      "vercelConfigPresent": true,
+      "productionEnvironmentValidationPassed": true,
+      "productionCspGenerationPassed": true,
+      "productionLocalhostRejectedByPolicy": true,
+      "indexerContainerDefinitionPresent": true,
+      "githubCiCodeqlDependencyAndReleaseWorkflowsPresent": true,
+      "githubWorkflowYamlParsed": true,
+      "githubPushPerformed": false,
+      "vercelAccountDeploymentPerformed": false,
+      "dockerImageBuilt": false,
+      "dockerUnavailableInEnvironment": true
+    },
+    "artifacts": {
+      "StockCoinLaunchpad": {
+        "runtimeBytes": 19333,
+        "artifactSha256": "f07b7c2d9933c052afdd241466793eddf7cfe749f1d80bef2b7b581c508fa14e"
+      },
+      "StockCoinPool": {
+        "runtimeBytes": 10197,
+        "artifactSha256": "bc2f0182ce87d7d76223ea456d240907ac28bc8fb15b22cb4952d60244510ba2"
+      },
+      "LaunchToken": {
+        "runtimeBytes": 1710,
+        "artifactSha256": "16240f0f43a2a8421b3b0a42faa8a65a8e34685f2ab2586911e2b3c9f34aa99e"
+      },
+      "LiquidityLocker": {
+        "runtimeBytes": 2172,
+        "artifactSha256": "7894b134345692628a620c24efbdecfaf07035e714e05748a4ed2a8955ef6169"
+      },
+      "CreatorVestingVault": {
+        "runtimeBytes": 2762,
+        "artifactSha256": "17a9ba8ff553c70f5a2a66c84078b8343b73be403c409048c96d379e83c0e816"
+      },
+      "AttestedEligibilityGate": {
+        "runtimeBytes": 4562,
+        "artifactSha256": "61ac87a28827c495457fccf1dbf09294a1cb6c8dbffaccd7ffb49959b9d0943f"
+      }
+    },
+    "incidentBoundary": {
+      "reportedHistoricalUserLoss": true,
+      "rootCauseProven": false,
+      "fundRecoveryGuaranteed": false,
+      "historicalDeploymentsPatched": false,
+      "missingEvidence": [
+        "attack transaction hashes",
+        "affected deployed addresses",
+        "compromised frontend bundle and hash",
+        "DNS/CDN/CI audit logs",
+        "signer and RPC logs"
+      ]
+    },
+    "notExecuted": [
+      "independent smart-contract and economic audit",
+      "independent browser/indexer/infrastructure penetration audit",
+      "live Robinhood Chain target-chain deployment and reorg/RPC-failure tests",
+      "live Vercel account deployment",
+      "GitHub repository push and organization-specific branch/environment protections",
+      "Docker image build and image scanning because Docker is unavailable",
+      "local Foundry and Slither because their CLIs are unavailable",
+      "production multisig/guardian and monitoring configuration",
+      "legal/compliance approval",
+      "forensic attribution or recovery",
+      "live responsive screenshot and browser-console capture because managed Chromium blocked local and file navigation"
+    ],
+    "evidence": {
+      "finalQuick": "qa/verification-logs-v0.6.0/final-quick-clean.log",
+      "finalWebBuild": "qa/verification-logs-v0.6.0/final-web-build.log",
+      "setup": "qa/verification-logs-v0.6.0/setup-local.log",
+      "vercelProductionBuild": "qa/verification-logs-v0.6.0/vercel-production-build-final.log",
+      "e2eDirectory": "qa/verification-logs-v0.6.0",
+      "e2eSummary": "qa/verification-logs-v0.6.0/e2e-summary.json",
+      "smoke": "qa/demo-smoke-v0.6.0/summary.json",
+      "securityReport": "docs/SECURITY_TEST_REPORT.md"
+    }
+  },
+  "inventory": [
+    {
+      "path": ".dockerignore",
+      "bytes": 185,
+      "sha256": "b0a9e40f6b22e9013ed1a7e8fc430c15282b538f4bd49665a4a9fd762ccf39e5"
+    },
+    {
+      "path": ".editorconfig",
+      "bytes": 172,
+      "sha256": "db9c096b942a0c455bccbeddb0ab5801cf1ee1114d771d70de4902e0dd80d855"
+    },
+    {
+      "path": ".gitattributes",
+      "bytes": 58,
+      "sha256": "9a5b3e8c93ebcd35a580f2c2cf3b51cad2f4e5c1514a6984f454f36b355dacd8"
+    },
+    {
+      "path": ".github/copilot-instructions.md",
+      "bytes": 417,
+      "sha256": "95f1893f8806701a2cb5bb5071597df1a41152b3d6631b9e4eea1d0038800518"
+    },
+    {
+      "path": ".github/dependabot.yml",
+      "bytes": 558,
+      "sha256": "dd80e3f8c95afb61523d7fcdd7410f47e4c221b5c72338e731ca3883767a1950"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/bug.yml",
+      "bytes": 1025,
+      "sha256": "ede762364f38b92d0a8b368a8be003c68afad53406226dc735a7bac1a894a8c4"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "bytes": 28,
+      "sha256": "1f103c6a9dd07cd13a9a6f17ace6b813f47747eb9cb7e00488cb2073caaf91bb"
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "bytes": 808,
+      "sha256": "0b8066228a6ea76e882570d0a246c42234d7d01d8a8a235e4531c9b28570fac3"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 3867,
+      "sha256": "99aa81043cbe5910db472ecf7e914532a68e801219c17f9cd7a96f923a0b1746"
+    },
+    {
+      "path": ".github/workflows/codeql.yml",
+      "bytes": 502,
+      "sha256": "f31e9cf78d6e696f6e12f5bfcae2a57d3ff01160f4cb6f955fa211d72f23fd52"
+    },
+    {
+      "path": ".github/workflows/dependency-review.yml",
+      "bytes": 367,
+      "sha256": "20ad19515e933b0cbc5323e2a309c8535513e64c60a1a652c3fca955ece5c34c"
+    },
+    {
+      "path": ".github/workflows/release.yml",
+      "bytes": 1856,
+      "sha256": "a2e76c7aebe261ccdaaf5b5633fbeec02664e4118a8a99b4c9f42c0a83497f0d"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 320,
+      "sha256": "ba9c56a3a49af517e91f57a799ee0f244b18e0a9a97cf3dd7a82c9bd56d1e060"
+    },
+    {
+      "path": ".nvmrc",
+      "bytes": 3,
+      "sha256": "f14b4987904bcb5814e4459a057ed4d20f58a633152288a761214dcd28780b56"
+    },
+    {
+      "path": ".vercelignore",
+      "bytes": 180,
+      "sha256": "ec6e05d98f429c1d0f87df15ec0b081295e9f2485e6484528a457bfc05e498eb"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 3861,
+      "sha256": "72f127884e5836c460c56226b2b851b795d1a5d1ca9f7aef44bd46801abe1472"
+    },
+    {
+      "path": "apps/web/.env.example",
+      "bytes": 893,
+      "sha256": "ad32c47ec8b04f959e66961cbfdda63a2fd2caab2ba0ef3f0f9bce23d9eec857"
+    },
+    {
+      "path": "apps/web/dist/_headers",
+      "bytes": 750,
+      "sha256": "b575f8a71bfc1fc6546a3be9ee81a175257ecec6c9e04111bd94aaf029adc861"
+    },
+    {
+      "path": "apps/web/dist/assets/ccip-CsPHpuad.js",
+      "bytes": 2863,
+      "sha256": "762c7aa36bf7922426df76b3b4c88d4c8360d968f9b98be65b58d2c6febb4469"
+    },
+    {
+      "path": "apps/web/dist/assets/index-BEWbIB7e.css",
+      "bytes": 47932,
+      "sha256": "373d32a28db2b16043fd174c597a80903c2b7b7948f1132a4e7017b4f92c9943"
+    },
+    {
+      "path": "apps/web/dist/assets/index-DbzESIis.js",
+      "bytes": 261340,
+      "sha256": "0ae94e73f7aeeffb177baeed07372217e83095ba8a190647dd334bdc671da300"
+    },
+    {
+      "path": "apps/web/dist/assets/localBatchGatewayRequest-BQmdb490.js",
+      "bytes": 106645,
+      "sha256": "e0fb7ee5c1a19da5fe27328c86be5c42a58fbc316b93f75faf23d2a3fba59dda"
+    },
+    {
+      "path": "apps/web/dist/assets/secp256k1-BNHPt8Gq.js",
+      "bytes": 30036,
+      "sha256": "9dc7f55d72f551593d28e7fbef13c87021566d91f0f9e85da1dd022a9237c4bd"
+    },
+    {
+      "path": "apps/web/dist/assets/utils-Bpv4vmSW.js",
+      "bytes": 2194,
+      "sha256": "5114638bb111b647e478a947be5beed5558487685dc8284144566df3fc03d851"
+    },
+    {
+      "path": "apps/web/dist/favicon.svg",
+      "bytes": 305,
+      "sha256": "7c455eb4327136ea9a3c88d7e47630bb214e0f796a0dfa3f04409acc91d0e904"
+    },
+    {
+      "path": "apps/web/dist/index.html",
+      "bytes": 2106,
+      "sha256": "f14d003c80d1c000edc6ed6484f92c4ca70eba3d0978a16e30a7a7c40cebafd5"
+    },
+    {
+      "path": "apps/web/dist/logo.svg",
+      "bytes": 307,
+      "sha256": "cf93ac2d61bb5bfa659e294ee137caede2dddd23fc71a0c75f8dc13b20c7b955"
+    },
+    {
+      "path": "apps/web/dist/manifest.webmanifest",
+      "bytes": 420,
+      "sha256": "079ea4b0860884b79243ec1df19a73d54869d424bce3b03dc842ed252863100a"
+    },
+    {
+      "path": "apps/web/dist/robots.txt",
+      "bytes": 39,
+      "sha256": "43fe06c8a24bcc38d15e8b172684f2f1790d7c505a040b717f092155fd25fd08"
+    },
+    {
+      "path": "apps/web/dist/social-card.svg",
+      "bytes": 1096,
+      "sha256": "8d2ba16a11818a4980a0a90b1d912ab47d64cef9df780674a2cc040bed344e63"
+    },
+    {
+      "path": "apps/web/index.html",
+      "bytes": 1381,
+      "sha256": "dcfe397fd41f95308a0c86cb538b93f29f9d07c305b600914a91b565d6664fbe"
+    },
+    {
+      "path": "apps/web/nginx.conf",
+      "bytes": 1083,
+      "sha256": "8dcf6d2407d19787e73eef2628f2508fdc123e74c335ae45e5dbea4a1ff49617"
+    },
+    {
+      "path": "apps/web/package-lock.json",
+      "bytes": 46460,
+      "sha256": "a58bd7997ad3fce9c5ade3f2f3c4591d6eea8d553e0f6bf6468c00dfc396665b"
+    },
+    {
+      "path": "apps/web/package.json",
+      "bytes": 635,
+      "sha256": "960c87ea620ecc0905e43290816366f2cd36303673982de9108b8cd7dd3a0e5c"
+    },
+    {
+      "path": "apps/web/public/_headers",
+      "bytes": 726,
+      "sha256": "c51ef4b11f84309e072a66c2cb914cd1a4f236e2d6213ff0851e2a43158a3565"
+    },
+    {
+      "path": "apps/web/public/favicon.svg",
+      "bytes": 305,
+      "sha256": "7c455eb4327136ea9a3c88d7e47630bb214e0f796a0dfa3f04409acc91d0e904"
+    },
+    {
+      "path": "apps/web/public/logo.svg",
+      "bytes": 307,
+      "sha256": "cf93ac2d61bb5bfa659e294ee137caede2dddd23fc71a0c75f8dc13b20c7b955"
+    },
+    {
+      "path": "apps/web/public/manifest.webmanifest",
+      "bytes": 420,
+      "sha256": "079ea4b0860884b79243ec1df19a73d54869d424bce3b03dc842ed252863100a"
+    },
+    {
+      "path": "apps/web/public/robots.txt",
+      "bytes": 39,
+      "sha256": "43fe06c8a24bcc38d15e8b172684f2f1790d7c505a040b717f092155fd25fd08"
+    },
+    {
+      "path": "apps/web/public/social-card.svg",
+      "bytes": 1096,
+      "sha256": "8d2ba16a11818a4980a0a90b1d912ab47d64cef9df780674a2cc040bed344e63"
+    },
+    {
+      "path": "apps/web/scripts/harden-dist.mjs",
+      "bytes": 2952,
+      "sha256": "ea22c9baea541407bee95f116ca3b9196843c14086d20fe6f1cb24ceecd179f3"
+    },
+    {
+      "path": "apps/web/scripts/security-runtime.test.mjs",
+      "bytes": 1701,
+      "sha256": "760dcc1e257cc3349994b4c71801d0c0ae8e9699198fccf8f8c2f4a8600b54f7"
+    },
+    {
+      "path": "apps/web/scripts/ui-contract.test.mjs",
+      "bytes": 2406,
+      "sha256": "c4239a2d38bbe5ad3a16d58e98bd4e28edc41bdbe52d8156bf1686ea9e6d582e"
+    },
+    {
+      "path": "apps/web/scripts/validate-env.mjs",
+      "bytes": 3386,
+      "sha256": "c28ff26b5a8094f03d2d4d20d89552d74eee9ddad4fbd01d565a0e64449b6843"
+    },
+    {
+      "path": "apps/web/src/abi/contracts.ts",
+      "bytes": 70617,
+      "sha256": "eea390ff4eb4725f65ddb2a237ac39d32488fbe6b6c92e7bdf5df8e5a05b8f4c"
+    },
+    {
+      "path": "apps/web/src/lib/chain.ts",
+      "bytes": 617,
+      "sha256": "1ab19c7e09526a5368f3ffa0d23632d9ad1aad37d83f66afa3de8109df2a4f76"
+    },
+    {
+      "path": "apps/web/src/lib/security.ts",
+      "bytes": 2695,
+      "sha256": "687702157004b6c7e44d6eabc93b3bfcb24ff24996e78a562d668e6ca7ab9808"
+    },
+    {
+      "path": "apps/web/src/main.ts",
+      "bytes": 129526,
+      "sha256": "90e50b8b379330c31c6fd2ea27a30ecf46eaf5c3d8d815b72f8a499a539a0d97"
+    },
+    {
+      "path": "apps/web/src/style.css",
+      "bytes": 55837,
+      "sha256": "58c4fa2e525592bd41b2a30815cdafc94698692cbe9c90634b8a9b5d9c8e2ff6"
+    },
+    {
+      "path": "apps/web/src/vite-env.d.ts",
+      "bytes": 504,
+      "sha256": "75cd7d0dfc94bdde4cd0f492d116249c1ea6ddfe438bccc6e3bebede31808fe5"
+    },
+    {
+      "path": "apps/web/tsconfig.json",
+      "bytes": 423,
+      "sha256": "43f80d1257ae72455ad044730ac69b11234fcd328eae93d9c8312ea17b3ff0a1"
+    },
+    {
+      "path": "artifacts/solc/_build-info.json",
+      "bytes": 326,
+      "sha256": "475f60b4375a0a2b7a3c3862f63b3bd7004f1fccae2e96f58e036331c7c761b2"
+    },
+    {
+      "path": "artifacts/solc/AttestedEligibilityGate.json",
+      "bytes": 55435,
+      "sha256": "61ac87a28827c495457fccf1dbf09294a1cb6c8dbffaccd7ffb49959b9d0943f"
+    },
+    {
+      "path": "artifacts/solc/BytecodePolicy.json",
+      "bytes": 4291,
+      "sha256": "e16ad9c0fe6bdf6c725789fba743b4825a31374b605c86aab9fc2132c12c60d2"
+    },
+    {
+      "path": "artifacts/solc/BytecodePolicyHarness.json",
+      "bytes": 11870,
+      "sha256": "8f1cff43deb59a3738619b458871b57ae54176e6bd271aacbfc08e62b9d436dd"
+    },
+    {
+      "path": "artifacts/solc/CreatorVestingVault.json",
+      "bytes": 31005,
+      "sha256": "17a9ba8ff553c70f5a2a66c84078b8343b73be403c409048c96d379e83c0e816"
+    },
+    {
+      "path": "artifacts/solc/ERC20Base.json",
+      "bytes": 12610,
+      "sha256": "918bdc49c60009adfb9f2d34dee6254b97c9e54f1440a4cfb29553bd18dc20a2"
+    },
+    {
+      "path": "artifacts/solc/IAggregatorV3.json",
+      "bytes": 3455,
+      "sha256": "b61de3507e6d064b663893177e954e41343bb47614a127b2373e0c4e2b88be95"
+    },
+    {
+      "path": "artifacts/solc/IEligibilityGate.json",
+      "bytes": 2142,
+      "sha256": "7b91f919915ab473a0b8c8006dd5da3f053aacc9c5461923f77a0f6987590998"
+    },
+    {
+      "path": "artifacts/solc/IERC20.json",
+      "bytes": 9500,
+      "sha256": "dfd42d0a6489a353d17a11963b4fc37b0c6e9418262ed53b16be3829cbc00473"
+    },
+    {
+      "path": "artifacts/solc/IERC20Metadata.json",
+      "bytes": 11529,
+      "sha256": "e5e78021521d61eaa696f47818bdeeae69bf134d73a1d316b9805b55e190b954"
+    },
+    {
+      "path": "artifacts/solc/IStockCoinPolicy.json",
+      "bytes": 2666,
+      "sha256": "cd0d65a75af0272948f64b0ac51a1badbce90e19941c6f854c015a3f4230b997"
+    },
+    {
+      "path": "artifacts/solc/LaunchToken.json",
+      "bytes": 26410,
+      "sha256": "16240f0f43a2a8421b3b0a42faa8a65a8e34685f2ab2586911e2b3c9f34aa99e"
+    },
+    {
+      "path": "artifacts/solc/LaunchTokenDeployer.json",
+      "bytes": 20819,
+      "sha256": "6fde786edf5d23211950d12f168076abd222439f3d31f444afc6d69d5a407528"
+    },
+    {
+      "path": "artifacts/solc/LiquidityLocker.json",
+      "bytes": 26196,
+      "sha256": "7894b134345692628a620c24efbdecfaf07035e714e05748a4ed2a8955ef6169"
+    },
+    {
+      "path": "artifacts/solc/Math.json",
+      "bytes": 1377,
+      "sha256": "264e87d0e5264ac631033e64e40698a731782c5de018c5bef5fb8b09863d68b4"
+    },
+    {
+      "path": "artifacts/solc/MockAggregatorV3.json",
+      "bytes": 12767,
+      "sha256": "75f3ed1ea1c79ae9f7e327a844f8d0a5c23cd370729a3394307e72595b82a8b0"
+    },
+    {
+      "path": "artifacts/solc/MockDangerousStockToken.json",
+      "bytes": 23125,
+      "sha256": "0f3c523ca04bb9be3269f8417b956f0d073e2b052986cc7041f27ad1f23ce98b"
+    },
+    {
+      "path": "artifacts/solc/MockDelegateProxy.json",
+      "bytes": 3486,
+      "sha256": "15f499e037859d41631a7b47df9eb07820c6669793dbe7a8e69ea735ddaac6b7"
+    },
+    {
+      "path": "artifacts/solc/MockEligibilityGate.json",
+      "bytes": 5331,
+      "sha256": "4aa3652e3a51f100eda34283ddcd1d7e55c26b441c87c45093dbf5bba69c5fbc"
+    },
+    {
+      "path": "artifacts/solc/MockERC20.json",
+      "bytes": 23383,
+      "sha256": "c4de890f26d22f16a8b7eb170159f91d2fb18a57483f016b03e3d5ed228d4cc3"
+    },
+    {
+      "path": "artifacts/solc/MockExecutableMetadataBypass.json",
+      "bytes": 2299,
+      "sha256": "b4f06ab22e691cc800c1f119436e7ab921508ff4ae378090c5ed8836fec3d188"
+    },
+    {
+      "path": "artifacts/solc/MockFeeOnTransferToken.json",
+      "bytes": 23465,
+      "sha256": "57ef8ceb9e3250a96df3273d495800ef3bee1a86ebba56eae0c3feaaf3752581"
+    },
+    {
+      "path": "artifacts/solc/MockInvalidOpcodeBypass.json",
+      "bytes": 2317,
+      "sha256": "074af92b78abea57a1f532ed720029848c6314d0edd0cee9a5dbe44826218234"
+    },
+    {
+      "path": "artifacts/solc/MockReentrantStockToken.json",
+      "bytes": 28754,
+      "sha256": "71645e9c7f0c8f065ffee1143b8b898c870ff8074da655bf090b93764b261be0"
+    },
+    {
+      "path": "artifacts/solc/MockStockToken.json",
+      "bytes": 24456,
+      "sha256": "accabfe0d4a49d4f0aac06b2d2f788fd339e7c5d7e94f53c1c3149108096e0b0"
+    },
+    {
+      "path": "artifacts/solc/MockStrictStockToken.json",
+      "bytes": 22481,
+      "sha256": "b4be64f1c30d9997a386126b9743e26a5ac1f98600f49c5e71c95dd9af13ffec"
+    },
+    {
+      "path": "artifacts/solc/ReentrancyGuard.json",
+      "bytes": 1494,
+      "sha256": "ea6b87d1faf775f6d727170fefaab889a5fb5eb1a753e8ceea28ff04413639d8"
+    },
+    {
+      "path": "artifacts/solc/SafeTransferLib.json",
+      "bytes": 2503,
+      "sha256": "0c669ec2b097ce29412050045d4d38d832acb02c8efe9eff6cb8b63f26a0177c"
+    },
+    {
+      "path": "artifacts/solc/StockCoinLaunchpad.json",
+      "bytes": 231861,
+      "sha256": "f07b7c2d9933c052afdd241466793eddf7cfe749f1d80bef2b7b581c508fa14e"
+    },
+    {
+      "path": "artifacts/solc/StockCoinPool.json",
+      "bytes": 100296,
+      "sha256": "bc2f0182ce87d7d76223ea456d240907ac28bc8fb15b22cb4952d60244510ba2"
+    },
+    {
+      "path": "artifacts/solc/StockCoinPoolDeployer.json",
+      "bytes": 56084,
+      "sha256": "a97b285715011e7289d1f2392ffc1f3a66085f92972d456eebfbee3364e1972f"
+    },
+    {
+      "path": "artifacts/solc/TwoStepAdmin.json",
+      "bytes": 8975,
+      "sha256": "5e9abb61b712b04e718ecdecbc6566e44a5632f14bbda81d133de921d8269e64"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 1857,
+      "sha256": "f42a908a649743e1a58ba049381535db6564be0bce8177c20bb93d5984f8007f"
+    },
+    {
+      "path": "COMPLETE_FINAL_HANDOFF.md",
+      "bytes": 23762,
+      "sha256": "730767695cce262935c53536a90895ebf807c615a354dc5fc892fa8a678b21d0"
+    },
+    {
+      "path": "config/deployment.env.example",
+      "bytes": 961,
+      "sha256": "bfc0cf6fcc9300ee5311a86fc844378455283b23bac1553c6dad2fb6b65b0fc9"
+    },
+    {
+      "path": "config/README.md",
+      "bytes": 850,
+      "sha256": "14937c5a10339d0c7ab370f070ff98925c943110fb0568272c25c411eab5896b"
+    },
+    {
+      "path": "config/robinhood-mainnet.example.json",
+      "bytes": 868,
+      "sha256": "bc22551293d9ec666f219eaa40966d17c45f959a940622ef108e1f0c821398bc"
+    },
+    {
+      "path": "config/robinhood-testnet.example.json",
+      "bytes": 904,
+      "sha256": "ab4921df88c9be5c212d49427c0f9ff34335ab3b1331e9f611e716880303b66b"
+    },
+    {
+      "path": "config/scout-chains.example.json",
+      "bytes": 251,
+      "sha256": "aca73784839ad948fa9c6ad5716a4c10e3f3f209861179c065d969c9daa9ea12"
+    },
+    {
+      "path": "config/scout-labels.example.json",
+      "bytes": 567,
+      "sha256": "b56755ea16c183ac31d599cf48df8fbdb86b8c80e5db21cdf7aef9689670301c"
+    },
+    {
+      "path": "deploy/indexer/.dockerignore",
+      "bytes": 101,
+      "sha256": "3ff7193efa75b485f8dde89a11efa5bfb652eaff454681aa88c067a09ff05da2"
+    },
+    {
+      "path": "deploy/indexer/Dockerfile",
+      "bytes": 385,
+      "sha256": "3c557091bd93fc3f523e2524a1119e51a81b2e6c39596e787f334b9134dbb86f"
+    },
+    {
+      "path": "deploy/indexer/README.md",
+      "bytes": 647,
+      "sha256": "016d75a4fb6fff2164fb6e21672c7744410b84a911476a2b86b8bdbc23c4128e"
+    },
+    {
+      "path": "docs/AGENT_HANDOFF.md",
+      "bytes": 5743,
+      "sha256": "9b51f98fe55e64dea3801edc3436f9bbb8c54944c10b42b542dc6b57b8ecfee5"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "bytes": 4943,
+      "sha256": "96c383dcd4b507160632bfcfca0e41ce87e5dd5b50a946ae681f61eb13428f8f"
+    },
+    {
+      "path": "docs/CHAIN_SCOUT.md",
+      "bytes": 4215,
+      "sha256": "fe7a5226e350b4e736372e7213b3102755155c21e73ab8b3f56a7b7021454830"
+    },
+    {
+      "path": "docs/DEPLOYMENT_CHECKLIST.md",
+      "bytes": 4381,
+      "sha256": "ac28d4492c8a1f800414bce32c66a33d57ab5eca18774a0ea67e3334e6a0dcce"
+    },
+    {
+      "path": "docs/DEPLOYMENT_READINESS.md",
+      "bytes": 1454,
+      "sha256": "95d190c5076b624e04084beaf5b6b9e3be2d72b416c3c157a996a5735697b8bc"
+    },
+    {
+      "path": "docs/ENVIRONMENT_REFERENCE.md",
+      "bytes": 3318,
+      "sha256": "968f3c9eecb3c2a933f1c145a0068e4ac0025845876e476d75f19ad9d1670f80"
+    },
+    {
+      "path": "docs/FORENSIC_EVIDENCE_INTAKE.md",
+      "bytes": 2107,
+      "sha256": "bfb21adabde6c9fc0c0d301aee69fa67957d35ab2685b1b95aec92dce6b04579"
+    },
+    {
+      "path": "docs/GITHUB_HANDOFF.md",
+      "bytes": 2456,
+      "sha256": "9ae750fadfaaed79a4fb21d3e8cbfbcccd5120974de635217ab4e3cd303401f8"
+    },
+    {
+      "path": "docs/INCIDENT_RESPONSE.md",
+      "bytes": 3302,
+      "sha256": "2379b3fb49ff67b7447dbc4c31d048f31404f492b2746a3d5c89485a3810500c"
+    },
+    {
+      "path": "docs/INDEXER_DEPLOYMENT.md",
+      "bytes": 1856,
+      "sha256": "749a7c8f08b24100c71aae96561529013c54f4b8ad810a63dab845a75e9a6915"
+    },
+    {
+      "path": "docs/LEGAL_AND_COMPLIANCE.md",
+      "bytes": 2085,
+      "sha256": "112b1fec6eec04dd59772ee6c95fa0161118792e106890515b6633053811c4c4"
+    },
+    {
+      "path": "docs/LOCAL_DEMO.md",
+      "bytes": 1160,
+      "sha256": "3eb0eeba7530a2f6857baf576cd0c478bfe483934ea96379d6bfda5f62bf2bee"
+    },
+    {
+      "path": "docs/LOCAL_DEVELOPMENT.md",
+      "bytes": 2847,
+      "sha256": "6eaf96440fca7b4102d09e01558375e65c6baf014b523d07e7a085b3e322eb77"
+    },
+    {
+      "path": "docs/OPERATIONS_RUNBOOK.md",
+      "bytes": 3903,
+      "sha256": "4c0d8dd825934dc4ec620566aba3c9a185a9b44607cd953125425c4decae7104"
+    },
+    {
+      "path": "docs/RELEASE_NOTES_v0.4.0.md",
+      "bytes": 1051,
+      "sha256": "b68b8c3074b76a2d7f0c1cee58e418e7309655434e2eb97ac63770e9c34d57c2"
+    },
+    {
+      "path": "docs/RELEASE_NOTES_v0.5.0.md",
+      "bytes": 2115,
+      "sha256": "2938f0c0c75328132c8ae18134310ff2436cc6eb574ff3060cf5a2fe432e4b84"
+    },
+    {
+      "path": "docs/RELEASE_NOTES_v0.6.0.md",
+      "bytes": 2673,
+      "sha256": "b994a74d9aed53b871dee97e62bf2e97737590a2f5aa06eb10561b9acdff6113"
+    },
+    {
+      "path": "docs/SCANNER_AND_EXECUTION_GATE.md",
+      "bytes": 2603,
+      "sha256": "a1fcdc7c256bffa4a6b723730b00f84ef4f7cdd69a7098f60775cdaa48c22d46"
+    },
+    {
+      "path": "docs/SECURITY_TEST_REPORT.md",
+      "bytes": 9079,
+      "sha256": "26e63d8f275c69d80cf0778f720b5ad87d8b64bf3421f24b40951525901c631e"
+    },
+    {
+      "path": "docs/THREAT_MODEL.md",
+      "bytes": 4982,
+      "sha256": "da4d19f8c13443b047b89594964a5bc6fc212a17ad0f222c549e6a7a4e146922"
+    },
+    {
+      "path": "docs/UI_AND_USER_FLOWS.md",
+      "bytes": 2380,
+      "sha256": "d9aefc478f18af772d484acf35d38b2d5fd578fdaf9ff06e1e65e453f6143bf9"
+    },
+    {
+      "path": "docs/UI_SECURITY_MODEL.md",
+      "bytes": 2697,
+      "sha256": "879a579a45ae4a2895757f0de16160d47be0a4e545ddec5c757c284afc8eeb17"
+    },
+    {
+      "path": "docs/USER_ACCEPTANCE_TESTS.md",
+      "bytes": 2886,
+      "sha256": "3a29345fabb7ae3fefc38340e433523aa56db638f3dac8427652082cc6c9f953"
+    },
+    {
+      "path": "docs/V0.3.0_SECURITY_POSTMORTEM.md",
+      "bytes": 3274,
+      "sha256": "0e58dac4fec2ecd9d779bb3c50d4e4091188a745ace3732b488dfde8d1f8967c"
+    },
+    {
+      "path": "docs/V0.4.0_MIGRATION.md",
+      "bytes": 1916,
+      "sha256": "48945fd6b6a83afd44fb3d09b9515a3c011de25f4703f3f67d278095be0f6103"
+    },
+    {
+      "path": "docs/V0.6.0_SECURITY_REVIEW.md",
+      "bytes": 3970,
+      "sha256": "8913b7e831406e1555d3fca3c2e38fa086fb141e4a1b17296823af903c0bd660"
+    },
+    {
+      "path": "docs/VERCEL_DEPLOYMENT.md",
+      "bytes": 2657,
+      "sha256": "fe7f7e562c4d2137436672cf07284bd94f5b953b28603986773fd90e562f848a"
+    },
+    {
+      "path": "foundry.toml",
+      "bytes": 540,
+      "sha256": "14b3cd402caea1fd84731c0b7fc8664e3dd49cb0d81580187f315c0f38070a4a"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1056,
+      "sha256": "1126322e2cc8d165adc4c792eeb195717de2bcc7b39be1ce77959d78e87ef685"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 34354,
+      "sha256": "bfefe3bee414d5c86cfeb0f27dc8b452d8f59ddb96e1d647f5fdff9820263ace"
+    },
+    {
+      "path": "package.json",
+      "bytes": 3541,
+      "sha256": "9a51da077c48c16d8e4d6684f30854d552bfe435226ac9d1eeccdf471c71786c"
+    },
+    {
+      "path": "qa/demo-smoke-v0.6.0/config.json",
+      "bytes": 1037,
+      "sha256": "9072888bee6d0bf281e6c5e3e14733fa49d3e4291bb7c53013d4b35a52a3d1ec"
+    },
+    {
+      "path": "qa/demo-smoke-v0.6.0/demo.log",
+      "bytes": 1861,
+      "sha256": "531a55801555e17aa31efb727f70432fb80cd2895dab0176b1656466cb1d346c"
+    },
+    {
+      "path": "qa/demo-smoke-v0.6.0/health.json",
+      "bytes": 1393,
+      "sha256": "aa9684bf678544b53131400d94481109e28c90a821dfa05fb91c3ca6956029db"
+    },
+    {
+      "path": "qa/demo-smoke-v0.6.0/launches.json",
+      "bytes": 1042,
+      "sha256": "3ef999da303d53cdd97f9bc8ffb48a02b1f900e6870599e9435e6e09b8d7d539"
+    },
+    {
+      "path": "qa/demo-smoke-v0.6.0/network.json",
+      "bytes": 713,
+      "sha256": "8565f2f15652331fe2bda652462d27e00043e795ffd6d00a4edf24b82bd555b1"
+    },
+    {
+      "path": "qa/demo-smoke-v0.6.0/scout-summary.json",
+      "bytes": 613,
+      "sha256": "99af3d83f7bcedd95b0ca5d5a66fa9f8e086c04de675e517fd85f0c6db633861"
+    },
+    {
+      "path": "qa/demo-smoke-v0.6.0/sse-headers.txt",
+      "bytes": 600,
+      "sha256": "3618123f88e20027892e437321abfb4fc66e00ac91a3ff12b1a5a9f955c94490"
+    },
+    {
+      "path": "qa/demo-smoke-v0.6.0/summary.json",
+      "bytes": 1696,
+      "sha256": "22dcc80bdf26a4ecfcda91504c1b3a8e1f5ca0c1fca64edf005e6e0996beaf48"
+    },
+    {
+      "path": "qa/demo-smoke-v0.6.0/ui-headers.txt",
+      "bytes": 232,
+      "sha256": "5ff900283976c856b78e7ff42d32500781c2b8756564af611e04d55f90a84b3c"
+    },
+    {
+      "path": "qa/demo-smoke-v0.6.0/ui.html",
+      "bytes": 1438,
+      "sha256": "ad62b61e25ab272b1839827364a8affc9a723a205b7499436a3759c6726f5b5a"
+    },
+    {
+      "path": "qa/V0.6.0_VERIFICATION.txt",
+      "bytes": 788,
+      "sha256": "f0e70ad654388dc0ebecdf9df5ca6dcf6dc9e8c173ee83a990af357ecf95af0c"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/compile-final.log",
+      "bytes": 780,
+      "sha256": "c035d8a4778a14e71ec44a39ab142b0a167d02ddd2a6fb5b2e7113cdf72f72e7"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/e2e-bytecode-policy.log",
+      "bytes": 881,
+      "sha256": "93658125467a5203c078c358902a88a55250636ad86f79bf72652d6cf678cc56"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/e2e-creator-bounds.log",
+      "bytes": 854,
+      "sha256": "4dc12e85fa1dbe33deaaf803df5931c950738e2b445a780dd1cf723a11092554"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/e2e-delist-exit.log",
+      "bytes": 820,
+      "sha256": "1b7b1927d8679bef4df754c1240d0b18bc8732ac45c94f0f65fd74db0803d0e6"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/e2e-eligibility-governance.log",
+      "bytes": 874,
+      "sha256": "4ccc590fe68b1a39786f0cfb74365ba5f4894a4d0931a3bdfd1d96e39a163d55"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/e2e-fee-token.log",
+      "bytes": 807,
+      "sha256": "299da49d87978992148d0e62f6a854a570aff353f978883b2f3d36d2feeeb5c7"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/e2e-frontend-compromise.log",
+      "bytes": 849,
+      "sha256": "8f3d1ba362e217cdfe5a15ec8509722480e0ba5f0656fa32770f682b384add75"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/e2e-incident-exit.log",
+      "bytes": 840,
+      "sha256": "36a68bc094bf94c7b1105be831b48b672aa1ab9aace397b913ddc3b3d4676000"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/e2e-lifecycle.log",
+      "bytes": 855,
+      "sha256": "764bd1343fb3f022c1ffaeea898a07cb4e34e987aaf4ed458fd59ddb4db83550"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/e2e-oracle.log",
+      "bytes": 796,
+      "sha256": "d4c2104a3ec3346eb7b60cbbebe144d94a8d7a8fc20295f2a22cd4011cc36a6c"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/e2e-reentrancy.log",
+      "bytes": 830,
+      "sha256": "a133b5839ee8d67ba682b5b69c6983600abeee4549cd887f836e03f073fce372"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/e2e-security-controls.log",
+      "bytes": 872,
+      "sha256": "a6793cc839ce8b102509f8334478aea44a457086d8197173ccf8247128f3081a"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/e2e-strict-assets.log",
+      "bytes": 852,
+      "sha256": "e15165c264c0217da6d02fe5087006766118c05bdf51429c47c4d396cec3938d"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/e2e-summary.json",
+      "bytes": 3925,
+      "sha256": "9a6c070bf840c638c615adf542c77eb64bf1e595ec689104fa7cd043b2774cd6"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/e2e-timelock.log",
+      "bytes": 836,
+      "sha256": "25630d1eab4df741f2c7bed0c02f22f668202d5456436860d8b5532dfdfb2a8a"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/final-quick-clean.log",
+      "bytes": 7993,
+      "sha256": "f6add83537023a6d1fab76268db462b428c61a81b3a5f494610b8cb687b9beb0"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/final-web-build.log",
+      "bytes": 1052,
+      "sha256": "8282693859438c8174eb040733ff352f616465bf12542ecb3347d4e52ad56c23"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/npm-audit-runtime.json",
+      "bytes": 361,
+      "sha256": "fd12355b232ee7f5608f3994ca1f45d6641e3fbef25a0fc81c95604c5260b883"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/npm-audit-web-runtime.json",
+      "bytes": 362,
+      "sha256": "8620f985692248b04ad72c360365106878e49e9d72b2eab261d37fc4e795c888"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/release-check.log",
+      "bytes": 196,
+      "sha256": "06535ecb66d4ab7d5ab676c20ec2e1691970cad9e640258dafa21b1f9c60261d"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/setup-local.log",
+      "bytes": 1755,
+      "sha256": "d6415448df8264af199f4ec7eaafba4b1f570c061d4142bf1a46d4a653e2bcd9"
+    },
+    {
+      "path": "qa/verification-logs-v0.6.0/vercel-production-build-final.log",
+      "bytes": 1367,
+      "sha256": "9e0a8a0b02c6bdbd5f2f2953f392162a084d1cf3785eadfbb0012f7ad608f433"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7213,
+      "sha256": "0aa40a03c35602e5ee123df62e40c6726dd9a4771e87a54b1d25712e76556813"
+    },
+    {
+      "path": "RELEASE_VERIFICATION.json",
+      "bytes": 9241,
+      "sha256": "14baaa1fec7294c23504ba09edd8d2c8a25b5898cfbc5eb46ddc1c9c067037b7"
+    },
+    {
+      "path": "script/DeployLocalStack.s.sol",
+      "bytes": 1500,
+      "sha256": "bb0f5ae8417ca97ebe63e80d4ea21ffb2e024b4620829c6eec2b477210d84f6a"
+    },
+    {
+      "path": "script/DeployRobinhoodTestnet.s.sol",
+      "bytes": 3581,
+      "sha256": "6c2a2bbc1ebb2e82fec9faa474dd48aa0f4fece4f558ce03d1ac0bf40e77fcbf"
+    },
+    {
+      "path": "script/ExecuteRobinhoodTestnetSetup.s.sol",
+      "bytes": 2830,
+      "sha256": "7f54126b86e770a97c880e8438744354a9c7217a1bd7352f1dea43a7e6699eda"
+    },
+    {
+      "path": "script/ScriptBase.sol",
+      "bytes": 723,
+      "sha256": "7fb71f5461eabcb1a65e51a2af84ac4d271c4d7a5afb39a0ce84a2804d37288c"
+    },
+    {
+      "path": "scripts/amm-property.test.mjs",
+      "bytes": 2959,
+      "sha256": "ce7a96897a17496f493b05f3fc72ec8cb57d3c1b2e09e77b7b7beda6605ba9ed"
+    },
+    {
+      "path": "scripts/check-release.mjs",
+      "bytes": 3781,
+      "sha256": "6ff8e7ab9b89a690f961710dc6fd7ec663f527a1d4aaf6ce77dbf2faa3e365e9"
+    },
+    {
+      "path": "scripts/compile-contracts.mjs",
+      "bytes": 3046,
+      "sha256": "10e25ecc1b5e7285986f9cefa9ba39c725495d6b7c3d86523cc80707e8aafa78"
+    },
+    {
+      "path": "scripts/create-release-manifest.mjs",
+      "bytes": 2326,
+      "sha256": "d73ec7c4fc2bed8e3a814c2b3f3d21dc8ae5a5a8f9ac62e4a65954137e63c4db"
+    },
+    {
+      "path": "scripts/deploy-local-node.mjs",
+      "bytes": 5983,
+      "sha256": "298db02b8ac09206e0729977eff82d022035cf2ef6ffb0ae7bb779090a7c68ee"
+    },
+    {
+      "path": "scripts/deploy-local.sh",
+      "bytes": 536,
+      "sha256": "f5e1129b981985c0d443790a15c3d3f67627acc5dd4d121be95f9289a4698980"
+    },
+    {
+      "path": "scripts/deploy-robinhood-testnet.sh",
+      "bytes": 2421,
+      "sha256": "91b4565635d5caef600faf7b9046bc7d62467ced3504108eeb9e1b4fb2f52ed2"
+    },
+    {
+      "path": "scripts/e2e/bytecode-policy.test.mjs",
+      "bytes": 1931,
+      "sha256": "b13e57a1c2d00101a23fa2cbcd5a70fcc8b321ff2a26e48c5681260875eb054a"
+    },
+    {
+      "path": "scripts/e2e/creator-bounds.test.mjs",
+      "bytes": 1075,
+      "sha256": "260e18ca8b27442321b631ba292dd4b2b0c1430d4e978e779fbdff6de7b24307"
+    },
+    {
+      "path": "scripts/e2e/delist-exit.test.mjs",
+      "bytes": 2201,
+      "sha256": "44575d349e9d94eee8e59273ba9795f08073ed9646a03c2c67953736a23bc795"
+    },
+    {
+      "path": "scripts/e2e/eligibility-governance.test.mjs",
+      "bytes": 3080,
+      "sha256": "af4d6111c9671e6b3374e35cdb105377a7ded86234d9788a78110ea3dbe86006"
+    },
+    {
+      "path": "scripts/e2e/fee-token.test.mjs",
+      "bytes": 1117,
+      "sha256": "55ce26adbce388e0ae6a5e914632fabbbe0ef43d26d65b55f771e83e47771a26"
+    },
+    {
+      "path": "scripts/e2e/frontend-compromise.test.mjs",
+      "bytes": 2034,
+      "sha256": "8a1506c29d685a7743a92744859b838947a89e9def809d4e74ac1d329685962a"
+    },
+    {
+      "path": "scripts/e2e/harness.mjs",
+      "bytes": 6791,
+      "sha256": "b065c0ca8d8a32a1bb06711deb86017fa1c047fc5ae29d2df1652788debc7bcb"
+    },
+    {
+      "path": "scripts/e2e/incident-exit.test.mjs",
+      "bytes": 2319,
+      "sha256": "b442cf19d20ff2cbba01c7b637cb6092600600752ede5846aae30213686066e8"
+    },
+    {
+      "path": "scripts/e2e/lifecycle.test.mjs",
+      "bytes": 2567,
+      "sha256": "e8b63d47b36b8a00e36662034003b3da2acc60c2308409313f2b27c98880cb3e"
+    },
+    {
+      "path": "scripts/e2e/oracle.test.mjs",
+      "bytes": 1269,
+      "sha256": "18536d69c915f7ef4ce36459bcf6bdea53ffcdd846ef9b3009dc1968e75b14cd"
+    },
+    {
+      "path": "scripts/e2e/reentrancy.test.mjs",
+      "bytes": 1496,
+      "sha256": "9974d7deb8d547131c19599e97e7ccdbbab1f9ddff481de3a9c4cdacb09fc0e9"
+    },
+    {
+      "path": "scripts/e2e/security-hardening.test.mjs",
+      "bytes": 4842,
+      "sha256": "b692090a509534678b975a4b89e197dafd1d44cbb80d7ab6142324520403cced"
+    },
+    {
+      "path": "scripts/fund-local-wallet.mjs",
+      "bytes": 990,
+      "sha256": "a066a4bfeb0c1068bfe9ea00f5eaec63c7afa09e76af5c4d85f6446080fabe0a"
+    },
+    {
+      "path": "scripts/generate-web-abi.mjs",
+      "bytes": 973,
+      "sha256": "db7735edba1ef81f1eca6417ac246fd6e5ec6c59f3bb46c28eef3b57a3d85f5f"
+    },
+    {
+      "path": "scripts/import-keystore.sh",
+      "bytes": 371,
+      "sha256": "3748e448b97f35ac0cddddf0edaf493752bb8ba86494db8363a52cbc785b8fdb"
+    },
+    {
+      "path": "scripts/indexer-security.test.mjs",
+      "bytes": 2787,
+      "sha256": "b9e7b9ea31c371baf9741e71237d61805693da6d5ed54aba8f22cef5bf9f1139"
+    },
+    {
+      "path": "scripts/risk-scanner.test.mjs",
+      "bytes": 3009,
+      "sha256": "2eed2f5e184ea81009042dc6c1b2adcf964aa5cf4b2a9bad5d62b20251f34a70"
+    },
+    {
+      "path": "scripts/run-local-checks.sh",
+      "bytes": 257,
+      "sha256": "1aa240984bca2622202564e9f3a1bcf65250ccde70cf5f5a00f57b86ecfda076"
+    },
+    {
+      "path": "scripts/scout.test.mjs",
+      "bytes": 2737,
+      "sha256": "adc9fb7d2d1d78e8434d824f55b3332676daa04727f6dc19291441324514accc"
+    },
+    {
+      "path": "scripts/setup-local.mjs",
+      "bytes": 1390,
+      "sha256": "05aa0dda380fb92974ea1e758ceaa4853ec7e4cfe1a9e141417750248baca29c"
+    },
+    {
+      "path": "scripts/solidity-structure-check.mjs",
+      "bytes": 2041,
+      "sha256": "b4ff88de7aaa409a15abac401508a41bfe2985226eaff6421aa9e4836a21272c"
+    },
+    {
+      "path": "scripts/start-demo.mjs",
+      "bytes": 2524,
+      "sha256": "7ba3d0bd06532afc66701e2060038dc922baf3a3d426b582af4591139eb79945"
+    },
+    {
+      "path": "scripts/static-audit.mjs",
+      "bytes": 5073,
+      "sha256": "b2eaf4f0f7c3be261238981336e4c3bd4be442d83cbe9dafc0575bda04679dcd"
+    },
+    {
+      "path": "scripts/ticker-to-bytes32.mjs",
+      "bytes": 355,
+      "sha256": "b951fe9f90dde708fa8d9762ff9fcb45bc0389b91e903b8ca1322a2970cec2c9"
+    },
+    {
+      "path": "scripts/validate-artifacts.mjs",
+      "bytes": 2729,
+      "sha256": "27d46d23392dae0bba8c39e9779897de63b391b09019450b125cc59e5107f1c5"
+    },
+    {
+      "path": "scripts/validate-config.mjs",
+      "bytes": 1578,
+      "sha256": "dbcbb5ffb8b74fe44cffa574b8a64f785d17aa190fbca8f962194f0344e1015e"
+    },
+    {
+      "path": "scripts/verify-deployment.mjs",
+      "bytes": 4754,
+      "sha256": "041581a7b5a564f40dd72922b85e024da838dc86817168724be4f2a9dd0f0f15"
+    },
+    {
+      "path": "SECURITY.md",
+      "bytes": 3426,
+      "sha256": "004c489f731deeadc51e4575731bbba042c9eae8f36f304d511a48c156d813a6"
+    },
+    {
+      "path": "services/indexer/.env.example",
+      "bytes": 1192,
+      "sha256": "957aec1ea1fcdf5f99fd3c322111d399c0b7bd0ad03393b671306de7d55e6405"
+    },
+    {
+      "path": "services/indexer/README.md",
+      "bytes": 2768,
+      "sha256": "42511b2f0863f2d7b48cda1f0e96546b9bf2a12ab756e0626b3c127fc1ac5cd9"
+    },
+    {
+      "path": "services/indexer/src/config.mjs",
+      "bytes": 8709,
+      "sha256": "c301d936391f0cfbade6e1622992814c603ff9ed8b0022801a14841aecea5fed"
+    },
+    {
+      "path": "services/indexer/src/indexer.mjs",
+      "bytes": 15386,
+      "sha256": "2e4349ef4fc73905b19eae8c0bf794b7f2369034329f9dcc161b30de17bf365f"
+    },
+    {
+      "path": "services/indexer/src/risk.mjs",
+      "bytes": 15049,
+      "sha256": "037de0ec84f592a1d36dc3879a4df65335e2b5207c3aaea6be1f389a137433e6"
+    },
+    {
+      "path": "services/indexer/src/scout.mjs",
+      "bytes": 21433,
+      "sha256": "511bbbf6cc2fc6dab8f3c557ff566ac32377be8763623be2cec360c3121d28dc"
+    },
+    {
+      "path": "services/indexer/src/server.mjs",
+      "bytes": 11384,
+      "sha256": "c8efa8bffa10aa5a9aa68ab6510bf938a6756aab95dc4c1d677e61253b1610cd"
+    },
+    {
+      "path": "src/AttestedEligibilityGate.sol",
+      "bytes": 7818,
+      "sha256": "82d704de04660c3a2fe1bb22ff8d5324e9fd8d7d161e8f411d9468c22cd721e2"
+    },
+    {
+      "path": "src/CreatorVestingVault.sol",
+      "bytes": 4882,
+      "sha256": "9aeda2e0a4473cf2305ea203066d5e7effcec6b7818f33b315f465ea7ef2bdd5"
+    },
+    {
+      "path": "src/interfaces/IAggregatorV3.sol",
+      "bytes": 313,
+      "sha256": "28b6bb3bf2f9ca328a2c4ac8814ae3f8bd5db919c7848bbad50d2d4ef0c9eea8"
+    },
+    {
+      "path": "src/interfaces/IEligibilityGate.sol",
+      "bytes": 160,
+      "sha256": "e218e7f16d39bb7c36078ef918db4cd53effddc86449eafb7880b686995cb346"
+    },
+    {
+      "path": "src/interfaces/IERC20.sol",
+      "bytes": 705,
+      "sha256": "2e1b7bdbf388d1eaac429889220ebee3828bfa9dca3cc7ff85f585ccfc1bcac1"
+    },
+    {
+      "path": "src/interfaces/IERC20Metadata.sol",
+      "bytes": 310,
+      "sha256": "bd6e995179dad7cfd77f25d83bd8922e7650a132cc4b332a0671637192fb3e22"
+    },
+    {
+      "path": "src/interfaces/IStockCoinPolicy.sol",
+      "bytes": 205,
+      "sha256": "728682b5e7397411e01d10f7acc5a910aec1dee2aa08335a52ea94de0a30a565"
+    },
+    {
+      "path": "src/LaunchToken.sol",
+      "bytes": 995,
+      "sha256": "3ba45ea45034624480704f9d9e24cd7640bc1dd3802a75a4aa91a031f96a0f8e"
+    },
+    {
+      "path": "src/LaunchTokenDeployer.sol",
+      "bytes": 1050,
+      "sha256": "f258a5a57365f77003b57a113265ec9231171d8e32fdf7e92e4370a2e37ce719"
+    },
+    {
+      "path": "src/libraries/BytecodePolicy.sol",
+      "bytes": 3596,
+      "sha256": "3e226182bc0e316b3e87c1b3afc870cad620f12922986ea5bd2722254fb60990"
+    },
+    {
+      "path": "src/libraries/Math.sol",
+      "bytes": 1283,
+      "sha256": "7d04ae7b3bd937a7aba89724d3c1ef4ca3cd389be45b4859d90b85850bb2d17c"
+    },
+    {
+      "path": "src/libraries/SafeTransferLib.sol",
+      "bytes": 1127,
+      "sha256": "7903dcce88338502b3b89fb049458895ec68146d6896ec1d1c0441e72b567b87"
+    },
+    {
+      "path": "src/LiquidityLocker.sol",
+      "bytes": 3648,
+      "sha256": "edb3faee4b7e49063534c8bee51d32bf03c3173494274c5daa63b901f8d119d3"
+    },
+    {
+      "path": "src/mocks/BytecodePolicyHarness.sol",
+      "bytes": 293,
+      "sha256": "9862a9b5c65c6d38a6e8a36d3dfe4243d9adf65d29b656d814145c3114969013"
+    },
+    {
+      "path": "src/mocks/MockAggregatorV3.sol",
+      "bytes": 1286,
+      "sha256": "6c5a502601b5a37d1bb18b47444d5c2965190fd3e72f2f7e88ae8b6954af389c"
+    },
+    {
+      "path": "src/mocks/MockDangerousStockToken.sol",
+      "bytes": 348,
+      "sha256": "6ae54ce38d6946ae24572d4f2f497b7b7a3253ff38f42b31a0e80787ef0477fa"
+    },
+    {
+      "path": "src/mocks/MockDelegateProxy.sol",
+      "bytes": 621,
+      "sha256": "b34c0c5b1855554f7abf35aff92ad4c843e7c893cdd10af6c7b2ff2d689d006c"
+    },
+    {
+      "path": "src/mocks/MockEligibilityGate.sol",
+      "bytes": 447,
+      "sha256": "8bb7fa0b4373244bdb540cebaf582713206c75026a58bac0452e68263a0883d7"
+    },
+    {
+      "path": "src/mocks/MockERC20.sol",
+      "bytes": 526,
+      "sha256": "49bd2b19e93ebcc83b18d74c9bcc04a505bc553b1388a03e69612e8f35bcc0c1"
+    },
+    {
+      "path": "src/mocks/MockExecutableMetadataBypass.sol",
+      "bytes": 905,
+      "sha256": "14b254461922753dc95b10fe0d69f143552d8a6f874a03ca3e971750ccb77da4"
+    },
+    {
+      "path": "src/mocks/MockFeeOnTransferToken.sol",
+      "bytes": 2051,
+      "sha256": "f5a16717601bfe032dc5288b149516d0fab617b5562d7c917dbf2bcf9c8f2c5b"
+    },
+    {
+      "path": "src/mocks/MockInvalidOpcodeBypass.sol",
+      "bytes": 790,
+      "sha256": "c9685f98ac6ac679750ee57f3e5256910bc817de0703c5821d17552ee4f2b119"
+    },
+    {
+      "path": "src/mocks/MockReentrantStockToken.sol",
+      "bytes": 2210,
+      "sha256": "34accdc2e3ce87cfe95f180cf9774e3f469be621d8ed6e993000fddd8b5c2dd2"
+    },
+    {
+      "path": "src/mocks/MockStockToken.sol",
+      "bytes": 473,
+      "sha256": "070491d78ac14f945d7abc0aad8a7cc054f97967ca8212300ef37f86c08b2b71"
+    },
+    {
+      "path": "src/mocks/MockStrictStockToken.sol",
+      "bytes": 425,
+      "sha256": "23ba844a7f235b6228f18bd33c3fb830df73da5f42d4ce066cef98ba60b51937"
+    },
+    {
+      "path": "src/StockCoinLaunchpad.sol",
+      "bytes": 29141,
+      "sha256": "8d3799ab9d7d33145c15b23df13d229bf8d064d7a732ebb2dabe674469a059e0"
+    },
+    {
+      "path": "src/StockCoinPool.sol",
+      "bytes": 16269,
+      "sha256": "5a549fad808b025afc90928ebf410c9f50ff8b494a2bd2abc6ea204ed235b370"
+    },
+    {
+      "path": "src/StockCoinPoolDeployer.sol",
+      "bytes": 721,
+      "sha256": "23f96b8f6866905372ea43cfa49f6612ba57cbc6ae1404845e509d628028a926"
+    },
+    {
+      "path": "src/utils/ERC20Base.sol",
+      "bytes": 2546,
+      "sha256": "baa6ccc688b9f3e2fa911af672d3e4f5f3cb6eaa2ff4f82385d072b3ee1919bc"
+    },
+    {
+      "path": "src/utils/ReentrancyGuard.sol",
+      "bytes": 290,
+      "sha256": "8380155f5377b265d264cc7ee48fa7d08502211de4249363ec23cb541ddd590b"
+    },
+    {
+      "path": "src/utils/TwoStepAdmin.sol",
+      "bytes": 2354,
+      "sha256": "1105ff08cecc45d40e7ad9182857d6c58b04b4e72468a6e5deed24a2a015fc3f"
+    },
+    {
+      "path": "test/StockCoinLaunchpad.t.sol",
+      "bytes": 10202,
+      "sha256": "22a525debac226d8713fbbaabadbaab36425b9d43a5d3577892168cd9a0e91cc"
+    },
+    {
+      "path": "test/TestBase.sol",
+      "bytes": 1107,
+      "sha256": "9a9bab7fec69c9ba253f0f906a90fba8df90b0081cf2b30f8c20b06c6f1cfba8"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 1295,
+      "sha256": "05b8a47e70c003e327241e27722963c66bb40e94c1b230f892aebb34e233f8ce"
+    }
+  ]
+}
