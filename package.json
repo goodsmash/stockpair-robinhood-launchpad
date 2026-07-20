@@ -47,11 +47,11 @@
   },
   "devDependencies": {
     "ganache": "^7.9.2",
-    "solc": "^0.8.30"
+    "solc": "^0.8.36"
   },
   "dependencies": {
     "@stockpair/launch-intelligence-sdk": "file:packages/launch-intelligence-sdk/package",
-    "viem": "^2.55.2"
+    "viem": "^2.55.4"
   },
   "engines": {
     "node": ">=22 <23"
